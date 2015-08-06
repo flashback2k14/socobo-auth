@@ -1,0 +1,68 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-material/paper-material.html">
+<link rel="import" href="socobo-element-login.html">
+<link rel="import" href="socobo-element-registration.html">
+
+
+<dom-module id="socobo-login-registration">
+  <style>
+    :host {
+      display: block;
+    }
+    .container {
+      @apply(--socobo-login-registration-container-theme)
+    }
+    .background-image {
+      @apply(--socobo-login-registration-bg-image-theme)
+    }
+    .content {
+      @apply(--socobo-login-registration-content-theme)
+    }
+    #pmLogin {
+      display: block;
+    }
+    #pmRegistration {
+      display: none;
+    }
+  </style>
+
+  <template>
+    <div class="container">
+      <div class="background-image"></div>
+
+      <div class="content">
+        <paper-material id="pmLogin" elevation="3">
+          <socobo-element-login
+            id="elLogin"
+            on-login-successful="handleLoginSuccessful"
+            on-go-to-register="handleGoToRegister">
+          </socobo-element-login>
+        </paper-material>
+
+        <paper-material id="pmRegistration" elevation="3">
+          <socobo-element-registration
+            id="elRegister"
+            on-login-successful="handleLoginSuccessful">
+          </socobo-element-registration>
+        </paper-material>
+      </div>
+    </div>
+  </template>
+</dom-module>
+
+<script>
+  (function() {
+    Polymer({
+      is: 'socobo-login-registration',
+
+      handleLoginSuccessful: function() {
+        this.fire('handle-successful-login');
+      },
+
+      handleGoToRegister: function() {
+        this.$.pmLogin.style.display = "none";
+        this.$.pmRegistration.style.display = "block";
+      }
+    });
+  })();
+</script>

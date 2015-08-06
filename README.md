@@ -1,2 +1,3 @@
-# socobo-element-login
-login element for socobo
+# socobo-login-registration
+
+Project for login / registration element for socobo

@@ -1,0 +1,154 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../paper-input/paper-input-char-counter.html">
+
+
+<dom-module id="socobo-element-login">
+  <style>
+    :host {
+      display: block;
+    }
+    .container {
+      width: 100%;
+      height: 100%;
+      /*@apply(--socobo-element-login-container-theme)*/
+    }
+    .label-container {
+      width: 100%;
+      clear: both;
+      background-color: #304FFE;
+      /*@apply(--socobo-element-login-label-container-theme)*/
+    }
+    .label-text {
+      margin: 0;
+      padding: 20px 0 10px 5px;
+      /*@apply(--socobo-element-login-label-text-theme);*/
+    }
+    .social-button-container {
+      width: 40%;
+      float: left;
+      margin-top: 40px;
+      /*@apply(--socobo-element-login-label-container-theme)*/
+    }
+    .social-btn {
+      margin-left: 15px;
+      margin-bottom: 5px;
+      width: 150px;
+      /*@apply(--socobo-element-login-social-btn-theme)*/
+    }
+    .btn-google-plus {
+      color: #ffffff;
+      background-color: #dd4b39;
+      /*@apply(--socobo-element-login-btn-google-plus-theme)*/
+    }
+    .btn-twitter {
+      color: #ffffff;
+      background-color: #55acee;
+      /*@apply(--socobo-element-login-btn-twitter-theme)*/
+    }
+    .btn-facebook {
+      color: #ffffff;
+      background-color: #3b5998;
+      /*@apply(--socobo-element-login-btn-facebook-theme)*/
+    }
+    .btn-login-email {
+      float: right;
+      margin-top: 30px;
+      margin-right: -25px;
+      width: 150px;
+      color: #ffffff;
+      background-color: #388E3C;
+      /*@apply(--socobo-element-login-btn-login-email-theme)*/
+    }
+    .login-input-container {
+      width: 58%;
+      float: right;
+      margin-top: 10px;
+      margin-right: 10px;
+      /*@apply(--socobo-element-login-login-input-container-theme)*/
+    }
+    .register-container {
+      width: 100%;
+      clear: both;
+      padding-top: 27px;
+      padding-left: 17px;
+      padding-bottom: 10px;
+      /*@apply(--socobo-element-login-register-container-theme)*/
+    }
+  </style>
+
+  <template>
+    <div class="container">
+
+      <div class="label-container">
+        <paper-toolbar>
+          <h1 class="label-text">Login</h1>
+        </paper-toolbar>
+      </div>
+
+      <div class="social-button-container">
+        <paper-button class="social-btn btn-google-plus" on-click="loginWithGooglePlus">
+          Google +
+        </paper-button>
+        <paper-button class="social-btn btn-twitter" on-click="loginWithTwitter">
+          Twitter
+        </paper-button>
+        <paper-button class="social-btn btn-facebook" on-click="loginWithFacebook">
+          Facebook
+        </paper-button>
+      </div>
+
+      <div class="login-input-container">
+        <paper-input label="E-Mail Address" type="email"></paper-input>
+        <paper-input label="Password" char-counter auto-validate pattern="[a-zA-Z]*" maxlength="10" error-message="letters only!"></paper-input>
+        <paper-button class="btn-login-email" on-click="loginWithEmail">
+          Login
+        </paper-button>
+      </div>
+
+      <div class="register-container">
+        <a href="#" on-click="goToRegister">No Account, yet? Register here...</a>
+      </div>
+
+    </div>
+  </template>
+</dom-module>
+
+<script>
+  (function() {
+    Polymer({
+      is: 'socobo-element-login',
+
+      loginWithGooglePlus: function() {
+        alert('Login with Google +');
+        this.fire('login-successful');
+      },
+
+      loginWithTwitter: function() {
+        alert('Login with Twitter');
+        this.fire('login-successful');
+      },
+
+      loginWithFacebook: function() {
+        alert('Login with Facebool');
+        this.fire('login-successful');
+      },
+
+      loginWithEmail: function() {
+        alert('Login with Email');
+        this.fire('login-successful');
+      },
+
+      goToRegister: function() {
+        alert('No Account, yet? Register here...');
+        this.fire('go-to-register');
+      },
+
+      ready: function() {
+        console.log('Login Element is ready to rock!');
+      }
+    });
+  })();
+</script>
