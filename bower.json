@@ -1,6 +1,6 @@
 {
   "name": "socobo-login-registration",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Elements for login and registration for Socobo-Frontend",
   "author": [
     "flashback2k14"
@@ -22,6 +22,7 @@
   },
   "license": "",
   "homepage": "",
+  "ignore": [],
   "dependencies": {
     "iron-elements": "PolymerElements/iron-elements#1.0.0",
     "paper-elements": "PolymerElements/paper-elements#1.0.1",
