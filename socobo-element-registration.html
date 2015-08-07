@@ -170,6 +170,14 @@
         this.fire('go-to-login');
       },
 
+      clearInputFields: function(clearAll) {
+        if (clearAll) {
+          this.$.txtEmailAddress.value = "";
+        }
+        this.$.txtPassword.value = "";
+        this.$.txtPasswordAgain.value = "";
+      },
+
       handleRegister: function(provider) {
         var that = this;
 
@@ -194,23 +202,27 @@
 
             SocoboAuth.registerUserAndLogin(provider, userObj)
               .then(function(user) {
+                that.clearInputFields(true);
                 that.fire('login-successful', user);
               })
               .catch(function(err) {
+                that.clearInputFields(false);
                 that.fire('login-failed', err);
               });
 
           } else {
-
+            that.clearInputFields(false);
             this.fire('passwords-not-matching');
           }
         } else {
 
           SocoboAuth.registerUserAndLogin(provider, null)
             .then(function(user) {
+              that.clearInputFields(true);
               that.fire('login-successful', user);
             })
             .catch(function(err) {
+              that.clearInputFields(false);
               that.fire('login-failed', err);
             });
         }

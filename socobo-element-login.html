@@ -161,6 +161,11 @@
         this.fire('go-to-register');
       },
 
+      clearInputFields: function(clearAll) {
+        if (clearAll) this.$.txtEmailaddress.value = "";
+        this.$.txtPassword.value = "";
+      },
+
       handleLogin: function(provider) {
         var that = this;
 
@@ -175,9 +180,11 @@
 
           SocoboAuth.loginWithEmailaddress(userObj, false)
             .then(function(user) {
+              that.clearInputFields(true);
               that.fire('login-successful', user);
             })
             .catch(function(err) {
+              that.clearInputFields(false)
               that.fire('login-failed', err);
             });
 
@@ -185,9 +192,11 @@
 
           SocoboAuth.loginWithProvider(provider, false)
             .then(function(user) {
+              that.clearInputFields(true);
               that.fire('login-successful', user);
             })
             .catch(function(err) {
+              that.clearInputFields(false);
               that.fire('login-failed', err);
             });
         }
