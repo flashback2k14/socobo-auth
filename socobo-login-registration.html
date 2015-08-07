@@ -56,8 +56,8 @@
     Polymer({
       is: 'socobo-login-registration',
 
-      handleLoginSuccessful: function() {
-        this.fire('handle-successful-login');
+      handleLoginSuccessful: function(e) {
+        this.fire('handle-successful-login', {'user': e.detail});
       },
 
       handleGoToRegister: function() {

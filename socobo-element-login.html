@@ -121,24 +121,25 @@
     Polymer({
       is: 'socobo-element-login',
 
+      handleLogin: function(provider) {
+        alert('Login with ' + provider);
+        this.fire('login-successful', {'user':'John Doe'});
+      },
+
       loginWithGooglePlus: function() {
-        alert('Login with Google +');
-        this.fire('login-successful');
+        this.handleLogin('Google+');
       },
 
       loginWithTwitter: function() {
-        alert('Login with Twitter');
-        this.fire('login-successful');
+        this.handleLogin('Twitter');
       },
 
       loginWithFacebook: function() {
-        alert('Login with Facebool');
-        this.fire('login-successful');
+        this.handleLogin('Facebook');
       },
 
       loginWithEmail: function() {
-        alert('Login with Email');
-        this.fire('login-successful');
+        this.handleLogin('Email');
       },
 
       goToRegister: function() {
