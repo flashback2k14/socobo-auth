@@ -2,6 +2,7 @@
 <link rel="import" href="../paper-material/paper-material.html">
 <link rel="import" href="socobo-element-login.html">
 <link rel="import" href="socobo-element-registration.html">
+<script src="lib/socobo-auth.js"></script>
 
 
 <dom-module id="socobo-login-registration">
@@ -72,6 +73,7 @@
             id="elRegister"
             on-login-successful="handleLoginSuccessful"
             on-login-failed="handleLoginFailed"
+            on-passwords-not-matching="handlePasswordsNotMatching"
             on-go-to-login="handleGoToLogin">
           </socobo-element-registration>
         </paper-material>
@@ -86,11 +88,15 @@
       is: 'socobo-login-registration',
 
       handleLoginSuccessful: function(e) {
-        this.fire('handle-successful-login', {'user': e});
+        this.fire('handle-successful-login', {'user': e.detail});
       },
 
       handleLoginFailed: function(e) {
-        this.fire('handle-failed-login', {'error': e});
+        this.fire('handle-failed-login', {'error': e.detail});
+      },
+
+      handlePasswordsNotMatching: function() {
+        this.fire('handle-passwords-not-mathing');
       },
 
       handleGoToRegister: function() {
