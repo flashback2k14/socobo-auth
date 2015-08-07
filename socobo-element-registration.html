@@ -13,51 +13,69 @@
     .container {
       width: 100%;
       height: 100%;
-      /*@apply(--socobo-element-registration-container-theme)*/
+      @apply(--socobo-element-registration-container-theme)
     }
     .label-container {
       width: 100%;
       clear:both;
       background-color: #304FFE;
+      @apply(--socobo-element-registration-label-container-theme)
     }
     .label-text {
       margin: 0;
       padding: 20px 0 10px 5px;
+      @apply(--socobo-element-registration-label-text-theme)
     }
     .social-button-container {
       width: 40%;
       float: left;
-      margin-top: 30px;
+      margin-top: 50px;
+      @apply(--socobo-element-registration-social-button-container-theme)
     }
     .social-btn {
       margin-left: 15px;
       margin-bottom: 5px;
       width: 150px;
+      @apply(--socobo-element-registration-social-btn-theme)
     }
     .btn-google-plus {
       color: #ffffff;
       background-color: #dd4b39;
+      @apply(--socobo-element-registration-btn-google-plus-theme)
     }
     .btn-twitter {
       color: #ffffff;
       background-color: #55acee;
+      @apply(--socobo-element-registration-btn-twitter-theme)
     }
     .btn-facebook {
       color: #ffffff;
       background-color: #3b5998;
+      @apply(--socobo-element-registration-btn-facebook-theme)
     }
     .btn-register-email {
       float: right;
-      margin-top: 23px;
+      margin-top: 25px;
       margin-right: -25px;
       width: 150px;
       color: #ffffff;
       background-color: #388E3C;
+      @apply(--socobo-element-registration-btn-register-email-theme)
     }
-    .login-input-container {
+    .register-input-container {
       width: 58%;
       float: right;
       margin-right: 10px;
+      @apply(--socobo-element-registration-register-input-container-theme)
+    }
+    .login-container {
+      width: 60%;
+      clear: left;
+      padding-top: 42px;
+      padding-left: 17px;
+      padding-bottom: 10px;
+      line-break: normal;
+      @apply(--socobo-element-registration-login-container-theme)
     }
   </style>
 
@@ -82,13 +100,17 @@
         </paper-button>
       </div>
 
-      <div class="login-input-container">
+      <div class="register-input-container">
         <paper-input label="E-Mail Address"></paper-input>
         <paper-input label="Password" char-counter auto-validate pattern="[a-zA-Z]*" maxlength="10" error-message="letters only!"></paper-input>
         <paper-input label="Password Again" char-counter auto-validate pattern="[a-zA-Z]*" maxlength="10" error-message="letters only!"></paper-input>
         <paper-button class="btn-register-email" on-click="loginWithEmail">
           Register
         </paper-button>
+      </div>
+
+      <div class="login-container">
+        <a href="#" on-click="goToLogin">Account! Go to login...</a>
       </div>
 
     </div>
@@ -106,11 +128,11 @@
       },
 
       loginWithGooglePlus: function() {
-        this.handleLogin('Google+');
+        this.handleRegister('Google+');
       },
 
       loginWithTwitter: function() {
-        this.handleLogin('Twitter');
+        this.handleRegister('Twitter');
       },
 
       loginWithFacebook: function() {
@@ -121,9 +143,9 @@
         this.handleRegister('EMail');
       },
 
-      goToRegister: function() {
-        alert('No Account, yet? Register here...');
-        this.fire('go-to-register');
+      goToLogin: function() {
+        alert('You have an Account? Go to login...');
+        this.fire('go-to-login');
       },
 
       ready: function() {

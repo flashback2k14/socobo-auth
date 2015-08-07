@@ -2,7 +2,6 @@
 <link rel="import" href="../paper-material/paper-material.html">
 <link rel="import" href="socobo-element-login.html">
 <link rel="import" href="socobo-element-registration.html">
-<link rel="import" href="socobo-login-registration-theme.html">
 
 
 <dom-module id="socobo-login-registration">
@@ -11,18 +10,47 @@
       display: block;
     }
     .container {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
       @apply(--socobo-login-registration-container-theme)
     }
     .background-image {
+      /*Original*/
+      background-image: url('images/bg-img-2.png');
+      /*Workaround - Socobo Frontend*/
+      /*background-image: url('../bower_components/socobo-login-registration/images/bg-img-2.png');*/
+      background-size: cover;
+      display: block;
+      height: 100%;
+      left: 0;
+      position: fixed;
+      right: 0;
+      z-index: 1;
+      -webkit-filter: blur(5px);
+      -moz-filter: blur(5px);
+      -o-filter: blur(5px);
+      -ms-filter: blur(5px);
+      filter: blur(5px);
       @apply(--socobo-login-registration-bg-image-theme)
     }
     .content {
+      width: 600px;
+      height: 320px;
+      position: fixed;
+      top: 30%;
+      left: 30%;
+      z-index: 15;
+      background-color: #eeeeee;
+      border-radius: 3px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
       @apply(--socobo-login-registration-content-theme)
     }
-    #pmLogin {
+    .default-show-login {
       display: block;
     }
-    #pmRegistration {
+    .default-hide-registration {
       display: none;
     }
   </style>
@@ -32,18 +60,21 @@
       <div class="background-image"></div>
 
       <div class="content">
-        <paper-material id="pmLogin" elevation="3">
+        <paper-material id="pmLogin" class="default-show-login" elevation="3">
           <socobo-element-login
             id="elLogin"
             on-login-successful="handleLoginSuccessful"
+            on-login-failed="handleLoginFailed"
             on-go-to-register="handleGoToRegister">
           </socobo-element-login>
         </paper-material>
 
-        <paper-material id="pmRegistration" elevation="3">
+        <paper-material id="pmRegistration" class="default-hide-registration" elevation="3">
           <socobo-element-registration
             id="elRegister"
-            on-login-successful="handleLoginSuccessful">
+            on-login-successful="handleLoginSuccessful"
+            on-login-failed="handleLoginFailed"
+            on-go-to-login="handleGoToLogin">
           </socobo-element-registration>
         </paper-material>
       </div>
@@ -57,12 +88,21 @@
       is: 'socobo-login-registration',
 
       handleLoginSuccessful: function(e) {
-        this.fire('handle-successful-login', {'user': e.detail});
+        this.fire('handle-successful-login', {'user': e});
+      },
+
+      handleLoginFailed: function(e) {
+        this.fire('handle-failed-login', {'error': e});
       },
 
       handleGoToRegister: function() {
         this.$.pmLogin.style.display = "none";
         this.$.pmRegistration.style.display = "block";
+      },
+
+      handleGoToLogin: function() {
+        this.$.pmRegistration.style.display = "none";
+        this.$.pmLogin.style.display = "block";
       }
     });
   })();
