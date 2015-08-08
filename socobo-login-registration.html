@@ -1,0 +1,127 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-material/paper-material.html">
+<link rel="import" href="../paper-fab/paper-fab.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="socobo-element-login.html">
+<link rel="import" href="socobo-element-registration.html">
+<script src="lib/socobo-auth.js"></script>
+
+
+<dom-module id="socobo-login-registration">
+  <style>
+    :host {
+      display: block;
+      font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+    .container {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      @apply(--socobo-login-registration-container-theme)
+    }
+    .background-image {
+      background-image: url('images/bg-img-2.png');
+      background-size: cover;
+      display: block;
+      height: 100%;
+      left: 0;
+      position: fixed;
+      right: 0;
+      z-index: 1;
+      -webkit-filter: blur(5px);
+      -moz-filter: blur(5px);
+      -o-filter: blur(5px);
+      -ms-filter: blur(5px);
+      filter: blur(5px);
+      @apply(--socobo-login-registration-bg-image-theme)
+    }
+    .content {
+      width: 600px;
+      height: 322px;
+      position: fixed;
+      top: 30%;
+      left: 30%;
+      z-index: 15;
+      background-color: #eeeeee;
+      border-radius: 3px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+      @apply(--socobo-login-registration-content-theme)
+    }
+    .close-button {
+      position: fixed !important;
+      top: 20px;
+      right: 20px;
+      @apply(--socobo-login-close-button-theme)
+    }
+    .default-show-login {
+      display: block;
+    }
+    .default-hide-registration {
+      display: none;
+    }
+  </style>
+
+  <template>
+    <div class="container">
+      <div class="background-image"></div>
+
+      <div class="content">
+        <paper-fab class="close-button" mini icon="close" on-click="closeLoginRegistration"></paper-fab>
+
+        <paper-material id="pmLogin" class="default-show-login" elevation="3">
+          <socobo-element-login
+            id="elLogin"
+            on-login-successful="handleLoginSuccessful"
+            on-login-failed="handleLoginFailed"
+            on-go-to-register="handleGoToRegister">
+          </socobo-element-login>
+        </paper-material>
+
+        <paper-material id="pmRegistration" class="default-hide-registration" elevation="3">
+          <socobo-element-registration
+            id="elRegister"
+            on-login-successful="handleLoginSuccessful"
+            on-login-failed="handleLoginFailed"
+            on-passwords-not-matching="handlePasswordsNotMatching"
+            on-go-to-login="handleGoToLogin">
+          </socobo-element-registration>
+        </paper-material>
+      </div>
+    </div>
+  </template>
+</dom-module>
+
+<script>
+  (function() {
+    Polymer({
+      is: 'socobo-login-registration',
+
+      closeLoginRegistration: function() {
+        this.fire('handle-close-login-registration');
+      },
+
+      handleLoginSuccessful: function(e) {
+        this.fire('handle-successful-login', {'user': e.detail});
+      },
+
+      handleLoginFailed: function(e) {
+        this.fire('handle-failed-login', {'error': e.detail});
+      },
+
+      handlePasswordsNotMatching: function() {
+        this.fire('handle-passwords-not-mathing');
+      },
+
+      handleGoToRegister: function() {
+        this.$.pmLogin.style.display = "none";
+        this.$.pmRegistration.style.display = "block";
+      },
+
+      handleGoToLogin: function() {
+        this.$.pmRegistration.style.display = "none";
+        this.$.pmLogin.style.display = "block";
+      }
+    });
+  })();
+</script>
