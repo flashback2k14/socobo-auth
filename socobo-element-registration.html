@@ -1,10 +1,29 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../paper-material/paper-material.html">
 <link rel="import" href="../paper-button/paper-button.html">
 <link rel="import" href="../paper-input/paper-input.html">
 <link rel="import" href="../paper-input/paper-input-char-counter.html">
 
+<!--
+The following custom properties and mixins are available for styling:
 
+Custom property | Description | Default
+----------------|-------------|----------
+`--socobo-element-registration-container-theme` | Styling Container that holds all Elements | `{}`
+`--socobo-element-registration-label-container-theme` | Styling Headline Label Container | `{}`
+`--socobo-element-registration-label-text-theme` | Styling Headline Label | `{}`
+`--socobo-element-registration-social-button-container-theme` | Styling Social Button Container | `{}`
+`--socobo-element-registration-social-btn-theme` | Styling for all Social Buttons | `{}`
+`--socobo-element-registration-btn-google-plus-theme` | Styling Google+ Button | `{}`
+`--socobo-element-registration-btn-twitter-theme` | Styling Twitter Button | `{}`
+`--socobo-element-registration-btn-facebook-theme` | Styling Facebook Button | `{}`
+`--socobo-element-registration-btn-register-email-theme` | Styling Register Button | `{}`
+`--socobo-element-registration-register-input-container-theme` | Styling Input Element Container | `{}`
+`--socobo-element-registration-login-container-theme` | Styling Hyperlink to Login Element container | `{}`
+
+@demo demo/index.html
+-->
 <dom-module id="socobo-element-registration">
   <style>
     :host {
@@ -82,23 +101,28 @@
     <div class="container">
 
       <div class="label-container">
-        <paper-toolbar>
-          <h1 class="label-text">Register</h1>
-        </paper-toolbar>
+        <paper-material elevation="3" animated="true">
+          <paper-toolbar>
+            <h1 class="label-text">Register</h1>
+          </paper-toolbar>
+        </paper-material>
       </div>
 
       <div class="social-button-container">
         <paper-button
           class="social-btn btn-google-plus"
-          on-click="loginWithGooglePlus">Google+
+          raised
+          on-click="registerWithGooglePlus">Google+
         </paper-button>
         <paper-button
           class="social-btn btn-twitter"
-          on-click="loginWithTwitter">Twitter
+          raised
+          on-click="registerWithTwitter">Twitter
         </paper-button>
         <paper-button
           class="social-btn btn-facebook"
-          on-click="loginWithFacebook">Facebook
+          raised
+          on-click="registerWithFacebook">Facebook
         </paper-button>
       </div>
 
@@ -133,7 +157,8 @@
         </paper-input>
         <paper-button
           class="btn-register-email"
-          on-click="loginWithEmail">Register
+          raised
+          on-click="registerWithEmail">Register
         </paper-button>
       </div>
 
@@ -150,26 +175,58 @@
     Polymer({
       is: 'socobo-element-registration',
 
-      loginWithGooglePlus: function() {
+      /**
+       * Method for register with Google+ Account
+       *
+       * @method registerWithGooglePlus
+       */
+      registerWithGooglePlus: function() {
         this.handleRegister('google');
       },
 
-      loginWithTwitter: function() {
+      /**
+       * Method for register with Twitter Account
+       *
+       * @method registerWithTwitter
+       */
+      registerWithTwitter: function() {
         this.handleRegister('twitter');
       },
 
-      loginWithFacebook: function() {
+      /**
+       * Method for register with Facebook Account
+       *
+       * @method registerWithFacebook
+       */
+      registerWithFacebook: function() {
         this.handleRegister('facebook');
       },
 
-      loginWithEmail: function() {
+      /**
+       * Method for register with Emailaddress Account
+       *
+       * @method registerWithEmail
+       */
+      registerWithEmail: function() {
         this.handleRegister('email');
       },
 
+      /**
+       * Method for go to Login Element <br/>
+       * __CUSTOM EVENT:__ go-to-login
+       *
+       * @method goToLogin
+       */
       goToLogin: function() {
         this.fire('go-to-login');
       },
 
+      /**
+       * Method for clearing all input fields
+       *
+       * @param {Boolean} clearAll
+       * @method clearInputFields
+       */
       clearInputFields: function(clearAll) {
         if (clearAll) {
           this.$.txtEmailAddress.value = "";
@@ -178,6 +235,15 @@
         this.$.txtPasswordAgain.value = "";
       },
 
+      /**
+       * Method for handle user registration <br/>
+       * __CUSTOM EVENT:__ login-successful <br/>
+       * __CUSTOM EVENT:__ login-failed <br/>
+       * __CUSTOM EVENT:__ passwords-not-matching
+       *
+       * @param {String} provider Social Provider
+       * @method handleRegister
+       */
       handleRegister: function(provider) {
         var that = this;
 

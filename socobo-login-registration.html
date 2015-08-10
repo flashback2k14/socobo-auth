@@ -6,7 +6,18 @@
 <link rel="import" href="socobo-element-registration.html">
 <script src="lib/socobo-auth.js"></script>
 
+<!--
+The following custom properties and mixins are available for styling:
 
+Custom property | Description | Default
+----------------|-------------|----------
+`--socobo-login-registration-container-theme` | Styling the Container that holds the Background Image and the Login / Register Element | `{}`
+`--socobo-login-registration-bg-image-theme` | Styling the Background Image | `{}`
+`--socobo-login-registration-content-theme` | Styling the Area for the Login / Register Element | `{}`
+`--socobo-login-registration-close-button-theme` | Styling the Close Button | `{}`
+
+@demo demo/index.html
+-->
 <dom-module id="socobo-login-registration">
   <style>
     :host {
@@ -55,7 +66,7 @@
       position: fixed !important;
       top: 20px;
       right: 20px;
-      @apply(--socobo-login-close-button-theme)
+      @apply(--socobo-login-registration-close-button-theme)
     }
     .default-show-login {
       display: block;
@@ -99,28 +110,57 @@
   (function() {
     Polymer({
       is: 'socobo-login-registration',
-
+      /**
+       * Method for firing custom event to close the Element <br/>
+       * __CUSTOM EVENT:__ handle-close-login-registration
+       * @method closeLoginRegistration
+       */
       closeLoginRegistration: function() {
         this.fire('handle-close-login-registration');
       },
-
+      /**
+       * Method for firing custom event to handle successful login  <br/>
+       * __CUSTOM EVENT:__ handle-successful-login
+       *
+       * @param {Object} e User Object
+       * @method handleLoginSuccessful
+       */
       handleLoginSuccessful: function(e) {
         this.fire('handle-successful-login', {'user': e.detail});
       },
-
+      /**
+       * Method for firing custom event to handle failed login  <br/>
+       * __CUSTOM EVENT:__ handle-failed-login
+       *
+       * @param {Object} e Error Object
+       * @method handleLoginFailed
+       */
       handleLoginFailed: function(e) {
         this.fire('handle-failed-login', {'error': e.detail});
       },
-
+      /**
+       * Method for firing custom event to handle mismatching passwords in Register Element <br/>
+       * __CUSTOM EVENT:__ handle-passwords-not-mathing
+       *
+       * @method handlePasswordsNotMatching
+       */
       handlePasswordsNotMatching: function() {
         this.fire('handle-passwords-not-mathing');
       },
-
+      /**
+       * Method for showing Register Element
+       *
+       * @method handleGoToRegister
+       */
       handleGoToRegister: function() {
         this.$.pmLogin.style.display = "none";
         this.$.pmRegistration.style.display = "block";
       },
-
+      /**
+       * Method for showing login Element
+       *
+       * @method handleGoToLogin
+       */
       handleGoToLogin: function() {
         this.$.pmRegistration.style.display = "none";
         this.$.pmLogin.style.display = "block";

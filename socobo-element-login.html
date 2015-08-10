@@ -1,10 +1,29 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../paper-material/paper-material.html">
 <link rel="import" href="../paper-button/paper-button.html">
 <link rel="import" href="../paper-input/paper-input.html">
 <link rel="import" href="../paper-input/paper-input-char-counter.html">
 
+<!--
+The following custom properties and mixins are available for styling:
 
+Custom property | Description | Default
+----------------|-------------|----------
+`--socobo-element-login-container-theme` | Styling Container that holds all Elements | `{}`
+`--socobo-element-login-label-container-theme` | Styling Headline Label Container | `{}`
+`--socobo-element-login-label-text-theme` | Styling Headline Label | `{}`
+`--socobo-element-login-social-button-container-theme` | Styling Social Button Container | `{}`
+`--socobo-element-login-social-btn-theme` | Styling for all Social Buttons | `{}`
+`--socobo-element-login-btn-google-plus-theme` | Styling Google+ Button | `{}`
+`--socobo-element-login-btn-twitter-theme` | Styling Twitter Button | `{}`
+`--socobo-element-login-btn-facebook-theme` | Styling Facebook Button | `{}`
+`--socobo-element-login-btn-login-email-theme` | Styling Login Button | `{}`
+`--socobo-element-login-login-input-container-theme` | Styling Input Element Container | `{}`
+`--socobo-element-login-register-container-theme` | Styling Hyperlink to Register Element container | `{}`
+
+@demo demo/index.html
+-->
 <dom-module id="socobo-element-login">
   <style>
     :host {
@@ -30,7 +49,7 @@
       width: 40%;
       float: left;
       margin-top: 50px;
-      @apply(--socobo-element-login-label-container-theme)
+      @apply(--socobo-element-login-social-button-container-theme)
     }
     .social-btn {
       margin-left: 15px;
@@ -83,22 +102,27 @@
     <div class="container">
 
       <div class="label-container">
-        <paper-toolbar>
-          <h1 class="label-text">Login</h1>
-        </paper-toolbar>
+        <paper-material elevation="3" animated="true">
+          <paper-toolbar>
+            <h1 class="label-text">Login</h1>
+          </paper-toolbar>
+        </paper-material>
       </div>
 
       <div class="social-button-container">
         <paper-button
           class="social-btn btn-google-plus"
+          raised
           on-click="loginWithGooglePlus">Google+
         </paper-button>
         <paper-button
           class="social-btn btn-twitter"
+          raised
           on-click="loginWithTwitter">Twitter
         </paper-button>
         <paper-button
           class="social-btn btn-facebook"
+          raised
           on-click="loginWithFacebook">Facebook
         </paper-button>
       </div>
@@ -124,6 +148,7 @@
         </paper-input>
         <paper-button
           class="btn-login-email"
+          raised
           on-click="loginWithEmail">Login
         </paper-button>
       </div>
@@ -141,34 +166,73 @@
     Polymer({
       is: 'socobo-element-login',
 
+      /**
+       * Method for login with Google+ Account
+       *
+       * @method loginWithGooglePlus
+       */
       loginWithGooglePlus: function() {
         this.handleLogin('google');
       },
 
+      /**
+       * Method for login with Twitter Account
+       *
+       * @method loginWithTwitter
+       */
       loginWithTwitter: function() {
         this.handleLogin('twitter');
       },
 
+      /**
+       * Method for login with Facebook Account
+       *
+       * @method loginWithFacebook
+       */
       loginWithFacebook: function() {
         this.handleLogin('facebook');
       },
 
+      /**
+       * Method for login with Emailaddress Account
+       *
+       * @method loginWithEmail
+       */
       loginWithEmail: function() {
         this.handleLogin('email');
       },
 
+      /**
+       * Method for go to Register Element <br/>
+       * __CUSTOM EVENT:__ go-to-register
+       *
+       * @method goToRegister
+       */
       goToRegister: function() {
         this.fire('go-to-register');
       },
 
+      /**
+       * Method for clearing all input fields
+       *
+       * @param {Boolean} clearAll
+       * @method clearInputFields
+       */
       clearInputFields: function(clearAll) {
         if (clearAll) this.$.txtEmailaddress.value = "";
         this.$.txtPassword.value = "";
       },
 
+      /**
+       * Method for handle user login <br/>
+       * __CUSTOM EVENT:__ login-successful <br/>
+       * __CUSTOM EVENT:__ login-failed
+       *
+       * @param {String} provider Social Provider
+       * @method handleLogin
+       */
       handleLogin: function(provider) {
         var that = this;
-
         if (provider === 'email') {
           var emailAddress = this.$.txtEmailaddress.value;
           var password = this.$.txtPassword.value;
@@ -189,7 +253,6 @@
             });
 
         } else {
-
           SocoboAuth.loginWithProvider(provider, false)
             .then(function(user) {
               that.clearInputFields(true);
