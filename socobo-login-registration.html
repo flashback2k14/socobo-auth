@@ -34,12 +34,11 @@ Custom property | Description | Default
     .background-image {
       background-image: url('images/bg-img-2.png');
       background-size: cover;
-      display: block;
       height: 100%;
-      left: 0;
-      position: fixed;
-      right: 0;
-      z-index: 1;
+      width: 100%;
+      position: absolute;
+      left:0;
+      top: 0;
       -webkit-filter: blur(5px);
       -moz-filter: blur(5px);
       -o-filter: blur(5px);
@@ -48,11 +47,9 @@ Custom property | Description | Default
       @apply(--socobo-login-registration-bg-image-theme)
     }
     .content {
-     /* width: 600px;
-      height: 322px;*/
       width: 42%;
       height: auto;
-      position: fixed;
+      position: absolute;
       top: 30%;
       left: 25%;
       z-index: 15;
@@ -63,9 +60,10 @@ Custom property | Description | Default
       @apply(--socobo-login-registration-content-theme)
     }
     .close-button {
-      position: fixed !important;
+      position: absolute;
       top: 20px;
       right: 20px;
+      z-index: 20;
       @apply(--socobo-login-registration-close-button-theme)
     }
     .default-show-login {
@@ -78,11 +76,11 @@ Custom property | Description | Default
 
   <template>
     <div class="container">
+      <paper-fab class="close-button" mini icon="close" on-click="closeLoginRegistration"></paper-fab>
+
       <div class="background-image"></div>
 
       <div class="content">
-        <paper-fab class="close-button" mini icon="close" on-click="closeLoginRegistration"></paper-fab>
-
         <paper-material id="pmLogin" class="default-show-login" elevation="3">
           <socobo-element-login
             id="elLogin"
