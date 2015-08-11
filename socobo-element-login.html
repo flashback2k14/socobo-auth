@@ -4,6 +4,8 @@
 <link rel="import" href="../paper-button/paper-button.html">
 <link rel="import" href="../paper-input/paper-input.html">
 <link rel="import" href="../paper-input/paper-input-char-counter.html">
+<link rel="import" href="../neon-animation/neon-animation-runner-behavior.html">
+<link rel="import" href="../neon-animation/neon-animations.html">
 
 <!--
 The following custom properties and mixins are available for styling:
@@ -32,6 +34,7 @@ Custom property | Description | Default
     .container {
       width: 100%;
       height: 100%;
+      background-color: #eeeeee;
       @apply(--socobo-element-login-container-theme)
     }
     .label-container {
@@ -165,7 +168,76 @@ Custom property | Description | Default
   (function() {
     Polymer({
       is: 'socobo-element-login',
+      /**
+       * Define Neon Animation Behavior
+       */
+      behaviors: [
+        Polymer.NeonAnimationRunnerBehavior
+      ],
+      /**
+       * Element Properties
+       */
+      properties: {
+        /**
+         * Handle Element showing state.
+         */
+        opened: {
+          type: Boolean,
+          value: true
+        },
 
+        animationConfig: {
+          type: Object,
+          value: function() {
+            return {
+              'entry': [{
+                name: 'slide-down-animation',
+                node: this
+              }],
+              'exit': [{
+                name: 'fade-in-animation',
+                node: this,
+                timing: {delay: 50}
+              }]
+            }
+          }
+        }
+      },
+      /**
+       * Define Listener for finished Animation
+       */
+      listeners: {
+        'neon-animation-finish': '_onAnimationFinish'
+      },
+      /**
+       * Method for handle finished Animation
+       *
+       * @method _onAnimationFinish
+       */
+      _onAnimationFinish: function() {
+        if (!this.opened) {
+          this.style.display = 'none';
+        }
+      },
+      /**
+       * Method for showing the Element
+       *
+       * @method show
+       */
+      show: function() {
+        this.opened = true;
+        this.style.display = 'block';
+        this.playAnimation('entry');
+      },
+      /**
+       * Method for hiding the Element
+       *
+       * @method hide
+       */
+      hide: function() {
+        this.opened = false;
+        this.playAnimation('exit');
+      },
       /**
        * Method for login with Google+ Account
        *
@@ -174,7 +246,6 @@ Custom property | Description | Default
       loginWithGooglePlus: function() {
         this.handleLogin('google');
       },
-
       /**
        * Method for login with Twitter Account
        *
@@ -183,7 +254,6 @@ Custom property | Description | Default
       loginWithTwitter: function() {
         this.handleLogin('twitter');
       },
-
       /**
        * Method for login with Facebook Account
        *
@@ -192,7 +262,6 @@ Custom property | Description | Default
       loginWithFacebook: function() {
         this.handleLogin('facebook');
       },
-
       /**
        * Method for login with Emailaddress Account
        *
@@ -201,7 +270,6 @@ Custom property | Description | Default
       loginWithEmail: function() {
         this.handleLogin('email');
       },
-
       /**
        * Method for go to Register Element <br/>
        * __CUSTOM EVENT:__ go-to-register
@@ -211,7 +279,6 @@ Custom property | Description | Default
       goToRegister: function() {
         this.fire('go-to-register');
       },
-
       /**
        * Method for clearing all input fields
        *
@@ -222,7 +289,6 @@ Custom property | Description | Default
         if (clearAll) this.$.txtEmailaddress.value = "";
         this.$.txtPassword.value = "";
       },
-
       /**
        * Method for handle user login <br/>
        * __CUSTOM EVENT:__ login-successful <br/>
@@ -263,10 +329,6 @@ Custom property | Description | Default
               that.fire('login-failed', err);
             });
         }
-      },
-
-      ready: function() {
-        console.log('Login Element is ready to rock!');
       }
     });
   })();
