@@ -1,6 +1,6 @@
 {
   "name": "socobo-login-registration",
-  "version": "0.0.7",
+  "version": "0.0.7.1",
   "description": "Elements for login and registration for Socobo-Frontend",
   "author": [
     "flashback2k14"
@@ -20,8 +20,8 @@
     "type": "git",
     "url": "git://github.com/flashback2k14/socobo-login-registration"
   },
-  "license": "",
-  "homepage": "",
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "homepage": "http://flashback2k14.github.io/socobo-login-registration",
   "ignore": [],
   "dependencies": {
     "iron-elements": "PolymerElements/iron-elements#1.0.0",
