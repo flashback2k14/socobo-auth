@@ -169,13 +169,27 @@ Custom property | Description | Default
     Polymer({
       is: 'socobo-element-login',
       /**
-       * Define Neon Animation Behavior
+       * This Event is fired if the hyperlink is pressed to navigate to the Registration Element. <br/>
+       * @event go-to-register
+       */
+      /**
+       * This Event is fired if the buttons are pressed and the login was successful. <br/>
+       * `Detail`: user {Object} <br/>
+       * @event login-successful
+       */
+      /**
+       * This Event is fired if the buttons are pressed and the login was failed. <br/>
+       * `Detail`: err {Object} <br/>
+       * @event login-failed
+       */
+      /**
+       * Define Neon Animation Behavior.
        */
       behaviors: [
         Polymer.NeonAnimationRunnerBehavior
       ],
       /**
-       * Element Properties
+       * Element Properties.
        */
       properties: {
         /**
@@ -204,14 +218,13 @@ Custom property | Description | Default
         }
       },
       /**
-       * Define Listener for finished Animation
+       * Define Listener for finished Animation.
        */
       listeners: {
         'neon-animation-finish': '_onAnimationFinish'
       },
       /**
-       * Method for handle finished Animation
-       *
+       * Method for handle finished Animation. <br/>
        * @method _onAnimationFinish
        */
       _onAnimationFinish: function() {
@@ -220,8 +233,7 @@ Custom property | Description | Default
         }
       },
       /**
-       * Method for showing the Element
-       *
+       * Method for showing the Element. <br/>
        * @method show
        */
       show: function() {
@@ -230,8 +242,7 @@ Custom property | Description | Default
         this.playAnimation('entry');
       },
       /**
-       * Method for hiding the Element
-       *
+       * Method for hiding the Element. <br/>
        * @method hide
        */
       hide: function() {
@@ -239,49 +250,42 @@ Custom property | Description | Default
         this.playAnimation('exit');
       },
       /**
-       * Method for login with Google+ Account
-       *
+       * Method for login with Google+ Account. <br/>
        * @method loginWithGooglePlus
        */
       loginWithGooglePlus: function() {
         this.handleLogin('google');
       },
       /**
-       * Method for login with Twitter Account
-       *
+       * Method for login with Twitter Account. <br/>
        * @method loginWithTwitter
        */
       loginWithTwitter: function() {
         this.handleLogin('twitter');
       },
       /**
-       * Method for login with Facebook Account
-       *
+       * Method for login with Facebook Account. <br/>
        * @method loginWithFacebook
        */
       loginWithFacebook: function() {
         this.handleLogin('facebook');
       },
       /**
-       * Method for login with Emailaddress Account
-       *
+       * Method for login with Emailaddress Account. <br/>
        * @method loginWithEmail
        */
       loginWithEmail: function() {
         this.handleLogin('email');
       },
       /**
-       * Method for go to Register Element <br/>
-       * __CUSTOM EVENT:__ go-to-register
-       *
+       * Method for go to Register Element. <br/>
        * @method goToRegister
        */
       goToRegister: function() {
         this.fire('go-to-register');
       },
       /**
-       * Method for clearing all input fields
-       *
+       * Method for clearing all input fields. <br/>
        * @param {Boolean} clearAll
        * @method clearInputFields
        */
@@ -290,10 +294,7 @@ Custom property | Description | Default
         this.$.txtPassword.value = "";
       },
       /**
-       * Method for handle user login <br/>
-       * __CUSTOM EVENT:__ login-successful <br/>
-       * __CUSTOM EVENT:__ login-failed
-       *
+       * Method for handle user login. <br/>
        * @param {String} provider Social Provider
        * @method handleLogin
        */

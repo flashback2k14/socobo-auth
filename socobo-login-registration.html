@@ -108,17 +108,32 @@ Custom property | Description | Default
     Polymer({
       is: 'socobo-login-registration',
       /**
-       * Method for firing custom event to close the Element <br/>
-       * __CUSTOM EVENT:__ handle-close-login-registration
+       * This Event is fired if the close button is pressed. <br/>
+       * @event handle-close-login-registration
+       */
+      /**
+       * This Event is fired if the login / registration is successful. <br/>
+       * `Detail`: user {Object} <br/>
+       * @event handle-successful-login
+       */
+      /**
+       * This Event is fired if the login / registration is failed. <br/>
+       * `Detail`: error {Object} <br/>
+       * @event handle-failed-login
+       */
+      /**
+       * This Event is fired if the registration passwords not matching. <br/>
+       * @event handle-passwords-not-mathing
+       */
+      /**
+       * Method for firing custom event to close the Element. <br/>
        * @method closeLoginRegistration
        */
       closeLoginRegistration: function() {
         this.fire('handle-close-login-registration');
       },
       /**
-       * Method for firing custom event to handle successful login  <br/>
-       * __CUSTOM EVENT:__ handle-successful-login
-       *
+       * Method for firing custom event to handle successful login. <br/>
        * @param {Object} e User Object
        * @method handleLoginSuccessful
        */
@@ -126,9 +141,7 @@ Custom property | Description | Default
         this.fire('handle-successful-login', {'user': e.detail});
       },
       /**
-       * Method for firing custom event to handle failed login  <br/>
-       * __CUSTOM EVENT:__ handle-failed-login
-       *
+       * Method for firing custom event to handle failed login. <br/>
        * @param {Object} e Error Object
        * @method handleLoginFailed
        */
@@ -136,17 +149,14 @@ Custom property | Description | Default
         this.fire('handle-failed-login', {'error': e.detail});
       },
       /**
-       * Method for firing custom event to handle mismatching passwords in Register Element <br/>
-       * __CUSTOM EVENT:__ handle-passwords-not-mathing
-       *
+       * Method for firing custom event to handle mismatching passwords in Register Element. <br/>
        * @method handlePasswordsNotMatching
        */
       handlePasswordsNotMatching: function() {
         this.fire('handle-passwords-not-mathing');
       },
       /**
-       * Method for showing Register Element
-       *
+       * Method for showing Register Element. <br/>
        * @method handleGoToRegister
        */
       handleGoToRegister: function() {
@@ -156,8 +166,7 @@ Custom property | Description | Default
         this.$.pmRegistration.style.display = "block";
       },
       /**
-       * Method for showing login Element
-       *
+       * Method for showing login Element. <br/>
        * @method handleGoToLogin
        */
       handleGoToLogin: function() {

@@ -178,13 +178,31 @@ Custom property | Description | Default
     Polymer({
       is: 'socobo-element-registration',
       /**
-       * Define Neon Animation Behavior
+       * This Event is fired if the hyperlink is pressed to navigate to the Login Element. <br/>
+       * @event go-to-login
+       */
+      /**
+       * This Event is fired if the buttons are pressed and the registration was successful. <br/>
+       * `Detail`: user {Object} <br/>
+       * @event login-successful
+       */
+      /**
+       * This Event is fired if the buttons are pressed and the registration was failed. <br/>
+       * `Detail`: err {Object} <br/>
+       * @event login-failed
+       */
+      /**
+       * This Event is fired if the entered passwords not matching. <br/>
+       * @event passwords-not-matching
+       */
+      /**
+       * Define Neon Animation Behavior.
        */
       behaviors: [
         Polymer.NeonAnimationRunnerBehavior
       ],
       /**
-       * Element Properties
+       * Element Properties.
        */
       properties: {
         /**
@@ -213,14 +231,13 @@ Custom property | Description | Default
         }
       },
       /**
-       * Define Listener for finished Animation
+       * Define Listener for finished Animation.
        */
       listeners: {
         'neon-animation-finish': '_onAnimationFinish'
       },
       /**
-       * Method for handle finished Animation
-       *
+       * Method for handle finished Animation. <br/>
        * @method _onAnimationFinish
        */
       _onAnimationFinish: function() {
@@ -229,8 +246,7 @@ Custom property | Description | Default
         }
       },
       /**
-       * Method for showing the Element
-       *
+       * Method for showing the Element. <br/>
        * @method show
        */
       show: function() {
@@ -239,8 +255,7 @@ Custom property | Description | Default
         this.playAnimation('entry');
       },
       /**
-       * Method for hiding the Element
-       *
+       * Method for hiding the Element. <br/>
        * @method hide
        */
       hide: function() {
@@ -248,49 +263,42 @@ Custom property | Description | Default
         this.playAnimation('exit');
       },
       /**
-       * Method for register with Google+ Account
-       *
+       * Method for register with Google+ Account. <br/>
        * @method registerWithGooglePlus
        */
       registerWithGooglePlus: function() {
         this.handleRegister('google');
       },
       /**
-       * Method for register with Twitter Account
-       *
+       * Method for register with Twitter Account. <br/>
        * @method registerWithTwitter
        */
       registerWithTwitter: function() {
         this.handleRegister('twitter');
       },
       /**
-       * Method for register with Facebook Account
-       *
+       * Method for register with Facebook Account. <br/>
        * @method registerWithFacebook
        */
       registerWithFacebook: function() {
         this.handleRegister('facebook');
       },
       /**
-       * Method for register with Emailaddress Account
-       *
+       * Method for register with Emailaddress Account. <br/>
        * @method registerWithEmail
        */
       registerWithEmail: function() {
         this.handleRegister('email');
       },
       /**
-       * Method for go to Login Element <br/>
-       * __CUSTOM EVENT:__ go-to-login
-       *
+       * Method for go to Login Element. <br/>
        * @method goToLogin
        */
       goToLogin: function() {
         this.fire('go-to-login');
       },
       /**
-       * Method for clearing all input fields
-       *
+       * Method for clearing all input fields. <br/>
        * @param {Boolean} clearAll
        * @method clearInputFields
        */
@@ -302,11 +310,7 @@ Custom property | Description | Default
         this.$.txtPasswordAgain.value = "";
       },
       /**
-       * Method for handle user registration <br/>
-       * __CUSTOM EVENT:__ login-successful <br/>
-       * __CUSTOM EVENT:__ login-failed <br/>
-       * __CUSTOM EVENT:__ passwords-not-matching
-       *
+       * Method for handle user registration. <br/>
        * @param {String} provider Social Provider
        * @method handleRegister
        */
