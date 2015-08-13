@@ -29,7 +29,7 @@ Custom property | Description | Default
 <dom-module id="socobo-element-registration">
   <style>
     :host {
-      display: block;
+      display: none;
     }
     .container {
       width: 100%;
@@ -217,15 +217,15 @@ Custom property | Description | Default
           type: Object,
           value: function() {
             return {
-              'entry': [{
-                name: 'slide-down-animation',
-                node: this
-              }],
-              'exit': [{
-                name: 'fade-in-animation',
+              'entry': {
+                name: 'scale-up-animation',
                 node: this,
-                timing: {delay: 50}
-              }]
+                timing: {duration: 1000}
+              },
+              'exit': {
+                name: 'fade-out-animation',
+                node: this
+              }
             }
           }
         }
@@ -252,6 +252,7 @@ Custom property | Description | Default
       show: function() {
         this.opened = true;
         this.style.display = 'block';
+        this.cancelAnimation();
         this.playAnimation('entry');
       },
       /**
@@ -260,6 +261,7 @@ Custom property | Description | Default
        */
       hide: function() {
         this.opened = false;
+        this.cancelAnimation();
         this.playAnimation('exit');
       },
       /**
