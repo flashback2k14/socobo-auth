@@ -6,6 +6,7 @@
 <link rel="import" href="../paper-input/paper-input-char-counter.html">
 <link rel="import" href="../neon-animation/neon-animation-runner-behavior.html">
 <link rel="import" href="../neon-animation/neon-animations.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 
 <!--
 The following custom properties and mixins are available for styling:
@@ -15,6 +16,7 @@ Custom property | Description | Default
 `--socobo-element-login-container-theme` | Styling Container that holds all Elements | `{}`
 `--socobo-element-login-label-container-theme` | Styling Headline Label Container | `{}`
 `--socobo-element-login-label-text-theme` | Styling Headline Label | `{}`
+`--socobo-element-login-input-container-theme` | Styling Container that holds all Input Elements | `{}`
 `--socobo-element-login-social-button-container-theme` | Styling Social Button Container | `{}`
 `--socobo-element-login-social-btn-theme` | Styling for all Social Buttons | `{}`
 `--socobo-element-login-btn-google-plus-theme` | Styling Google+ Button | `{}`
@@ -35,69 +37,122 @@ Custom property | Description | Default
       width: 100%;
       height: 100%;
       background-color: #eeeeee;
-      @apply(--socobo-element-login-container-theme)
+      @apply(--socobo-element-login-container-theme);
     }
     .label-container {
-      width: 100%;
-      clear: both;
       background-color: #304FFE;
-      @apply(--socobo-element-login-label-container-theme)
+      @apply(--socobo-element-login-label-container-theme);
     }
     .label-text {
       margin: 0;
       padding: 20px 0 10px 5px;
       @apply(--socobo-element-login-label-text-theme);
     }
+    .input-container {
+      @apply(--layout-horizontal);
+      @apply(--socobo-element-login-input-container-theme);
+    }
     .social-button-container {
       width: 40%;
-      float: left;
       margin-top: 50px;
-      @apply(--socobo-element-login-social-button-container-theme)
+      margin-left: 9px;
+      @apply(--layout-verical);
+      @apply(--socobo-element-login-social-button-container-theme);
     }
     .social-btn {
       margin-left: 15px;
       margin-bottom: 5px;
       width: 150px;
-      @apply(--socobo-element-login-social-btn-theme)
+      @apply(--socobo-element-login-social-btn-theme);
     }
     .btn-google-plus {
       color: #ffffff;
       background-color: #dd4b39;
-      @apply(--socobo-element-login-btn-google-plus-theme)
+      @apply(--socobo-element-login-btn-google-plus-theme);
     }
     .btn-twitter {
       color: #ffffff;
       background-color: #55acee;
-      @apply(--socobo-element-login-btn-twitter-theme)
+      @apply(--socobo-element-login-btn-twitter-theme);
     }
     .btn-facebook {
       color: #ffffff;
       background-color: #3b5998;
-      @apply(--socobo-element-login-btn-facebook-theme)
+      @apply(--socobo-element-login-btn-facebook-theme);
     }
     .btn-login-email {
       float: right;
       margin-top: 20px;
+      margin-right: 0;
       width: 150px;
       color: #ffffff;
       background-color: #388E3C;
-      @apply(--socobo-element-login-btn-login-email-theme)
+      @apply(--socobo-element-login-btn-login-email-theme);
     }
     .login-input-container {
       width: 55%;
-      float: right;
-      margin-top: 55px;
-      margin-right: 15px;
-      @apply(--socobo-element-login-login-input-container-theme)
+      margin-top: 50px;
+      @apply(--layout-verical);
+      @apply(--socobo-element-login-login-input-container-theme);
     }
     .register-container {
       width: 50%;
-      clear: left;
-      padding-top: 42px;
-      padding-left: 17px;
+      margin-top: -15px;
+      padding-left: 24px;
       padding-bottom: 10px;
       white-space: nowrap;
-      @apply(--socobo-element-login-register-container-theme)
+      @apply(--layout-horizontal);
+      @apply(--socobo-element-login-register-container-theme);
+    }
+    @media all and (min-height: 400px) and (max-height: 650px) {
+      .input-container {
+        @apply(--layout-vertical);
+      }
+      .social-button-container {
+        width: 95%;
+        margin-top: 25px;
+        margin-left: 10px;
+      }
+      .social-btn {
+        width: 100px;
+        margin-left: 0;
+      }
+      .login-input-container {
+        width: 93%;
+        margin-top: 20px;
+        margin-left: 10px;
+      }
+      .register-container {
+        width: 60%;
+        margin-top: 26px;
+        margin-left: 10px;
+        padding-left: 0;
+      }
+    }
+    @media all and (min-height: 650px) and (max-height: 750px) {
+      .input-container {
+        @apply(--layout-vertical);
+      }
+      .social-button-container {
+        width: 90%;
+        margin-top: 25px;
+        margin-left: 20px;
+      }
+      .social-btn {
+        width: 100px;
+        margin-left: 10px;
+      }
+      .login-input-container {
+        width: 93%;
+        margin-top: 20px;
+        margin-left: 10px;
+      }
+      .register-container {
+        width: 60%;
+        margin-top: 26px;
+        margin-left: 10px;
+        padding-left: 0;
+      }
     }
   </style>
 
@@ -112,48 +167,50 @@ Custom property | Description | Default
         </paper-material>
       </div>
 
-      <div class="social-button-container">
-        <paper-button
-          class="social-btn btn-google-plus"
-          raised
-          on-click="loginWithGooglePlus">Google+
-        </paper-button>
-        <paper-button
-          class="social-btn btn-twitter"
-          raised
-          on-click="loginWithTwitter">Twitter
-        </paper-button>
-        <paper-button
-          class="social-btn btn-facebook"
-          raised
-          on-click="loginWithFacebook">Facebook
-        </paper-button>
-      </div>
+      <div class="input-container">
+        <div class="social-button-container">
+          <paper-button
+            class="social-btn btn-google-plus"
+            raised
+            on-click="loginWithGooglePlus">Google+
+          </paper-button>
+          <paper-button
+            class="social-btn btn-twitter"
+            raised
+            on-click="loginWithTwitter">Twitter
+          </paper-button>
+          <paper-button
+            class="social-btn btn-facebook"
+            raised
+            on-click="loginWithFacebook">Facebook
+          </paper-button>
+        </div>
 
-      <div class="login-input-container">
-        <paper-input
-          id="txtEmailaddress"
-          label="E-Mail Address"
-          type="email"
-          auto-validate
-          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-          error-message="no valid emailaddress">
-        </paper-input>
-        <paper-input
-          id="txtPassword"
-          label="Password"
-          type="password"
-          char-counter auto-validate
-          pattern="[a-zA-Z0-9]*"
-          minlength="8"
-          maxlength="30"
-          error-message="min. 8 character (only letters, numbers)">
-        </paper-input>
-        <paper-button
-          class="btn-login-email"
-          raised
-          on-click="loginWithEmail">Login
-        </paper-button>
+        <div class="login-input-container">
+          <paper-input
+            id="txtEmailaddress"
+            label="E-Mail Address"
+            type="email"
+            auto-validate
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            error-message="no valid emailaddress">
+          </paper-input>
+          <paper-input
+            id="txtPassword"
+            label="Password"
+            type="password"
+            char-counter auto-validate
+            pattern="[a-zA-Z0-9]*"
+            minlength="8"
+            maxlength="30"
+            error-message="min. 8 character (only letters, numbers)">
+          </paper-input>
+          <paper-button
+            class="btn-login-email"
+            raised
+            on-click="loginWithEmail">Login
+          </paper-button>
+        </div>
       </div>
 
       <div class="register-container">
@@ -317,7 +374,7 @@ Custom property | Description | Default
               that.fire('login-successful', user);
             })
             .catch(function(err) {
-              that.clearInputFields(false)
+              that.clearInputFields(false);
               that.fire('login-failed', err);
             });
 
