@@ -114,6 +114,7 @@ Custom property | Description | Default
         <paper-material id="pmLogin" class="default-show-login" elevation="3">
           <socobo-element-login
             id="elLogin"
+            firebasebaseurl="[[firebasebaseurl]]"
             on-login-successful="handleLoginSuccessful"
             on-login-failed="handleLoginFailed"
             on-go-to-register="handleGoToRegister">
@@ -123,6 +124,7 @@ Custom property | Description | Default
         <paper-material id="pmRegistration" class="default-hide-registration" elevation="3">
           <socobo-element-registration
             id="elRegister"
+            firebasebaseurl="[[firebasebaseurl]]"
             on-login-successful="handleLoginSuccessful"
             on-login-failed="handleLoginFailed"
             on-passwords-not-matching="handlePasswordsNotMatching"
@@ -156,6 +158,17 @@ Custom property | Description | Default
        * This Event is fired if the registration passwords not matching. <br/>
        * @event handle-passwords-not-mathing
        */
+      /**
+       * Element Properties.
+       */
+      properties: {
+        /**
+         * Base URL to your Firebase Database
+         */
+        firebasebaseurl: {
+          type: String
+        }
+      },
       /**
        * Method for firing custom event to close the Element. <br/>
        * @method closeLoginRegistration

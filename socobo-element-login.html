@@ -129,7 +129,7 @@ Custom property | Description | Default
         padding-left: 0;
       }
     }
-    @media all and (min-height: 650px) and (max-height: 750px) {
+    @media all and (min-height: 650px) and (max-height: 730px) {
       .input-container {
         @apply(--layout-vertical);
       }
@@ -256,6 +256,12 @@ Custom property | Description | Default
           type: Boolean,
           value: true
         },
+        /**
+         * Base URL to your Firebase Database
+         */
+        firebasebaseurl: {
+          type: String
+        },
 
         animationConfig: {
           type: Object,
@@ -359,6 +365,8 @@ Custom property | Description | Default
        */
       handleLogin: function(provider) {
         var that = this;
+        var fbBaseURL = this.firebasebaseurl;
+
         if (provider === 'email') {
           var emailAddress = this.$.txtEmailaddress.value;
           var password = this.$.txtPassword.value;
@@ -368,7 +376,7 @@ Custom property | Description | Default
             'password': password
           };
 
-          SocoboAuth.loginWithEmailaddress(userObj, false)
+          SocoboAuth.loginWithEmailaddress(fbBaseURL, userObj, false)
             .then(function(user) {
               that.clearInputFields(true);
               that.fire('login-successful', user);
@@ -379,7 +387,7 @@ Custom property | Description | Default
             });
 
         } else {
-          SocoboAuth.loginWithProvider(provider, false)
+          SocoboAuth.loginWithProvider(fbBaseURL, provider, false)
             .then(function(user) {
               that.clearInputFields(true);
               that.fire('login-successful', user);
