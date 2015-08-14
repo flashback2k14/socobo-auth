@@ -36,11 +36,11 @@
     "test-fixture": "polymerelements/test-fixture#^1.0.0",
     "web-component-tester": "*"
   },
-  "_release": "502668a2d1",
+  "_release": "4bdcf89a7f",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "502668a2d126a51a1e9d12ae5bcfe375d8eaee13"
+    "commit": "4bdcf89a7f7bcbb2302fe0f879b7e6af1f6f4f19"
   },
   "_source": "git://github.com/flashback2k14/socobo-login-registration.git",
   "_target": "master",
