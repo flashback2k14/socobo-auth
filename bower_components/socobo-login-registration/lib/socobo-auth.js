@@ -1,11 +1,15 @@
 /**
- * Base URL for firebase db
- * @type {string}
- */
-var firebaseBaseUrl = 'https://socobo.firebaseio.com/';
-/**
  * Socobo Auth Object
- * @type {{_createUser: Function, _getUserName: Function, _getUserEmailAddress: Function, registerUserAndLogin: Function, loginWithProvider: Function, loginWithEmailaddress: Function}}
+ * @type {
+ *  {
+ *    _createUser: Function,
+ *    _getUserName: Function,
+ *    _getUserEmailAddress: Function,
+ *    registerUserAndLogin: Function,
+ *    loginWithProvider: Function,
+ *    loginWithEmailaddress: Function
+ *  }
+ * }
  */
 var SocoboAuth = {
   /**
@@ -63,18 +67,19 @@ var SocoboAuth = {
   },
   /**
    * register user on firebase and log user in
+   * @param baseURL
    * @param provider
    * @param userObj
    * @returns {Promise}
    */
-  registerUserAndLogin: function(provider, userObj) {
+  registerUserAndLogin: function(baseURL ,provider, userObj) {
     var that = this;
     if (userObj === null) {
-      return that.loginWithProvider(provider, true);
+      return that.loginWithProvider(baseURL ,provider, true);
     } else {
       return this._createUser(userObj)
         .then(function() {
-          return that.loginWithEmailaddress(userObj, true);
+          return that.loginWithEmailaddress(baseURL ,userObj, true);
         })
         .catch(function(err) {
           return err;
@@ -83,17 +88,17 @@ var SocoboAuth = {
   },
   /**
    * ToDo: Generate API Keys for
-   *  - Twitter
    *  - Facebook
    * auth user with social media provider
+   * @param baseURL
    * @param provider
    * @param isRegister
    * @returns {Promise}
    */
-  loginWithProvider: function(provider, isRegister) {
+  loginWithProvider: function(baseURL, provider, isRegister) {
     var that = this;
     return new Promise(function(resolve, reject) {
-      var rootRef = new Firebase(firebaseBaseUrl);
+      var rootRef = new Firebase(baseURL);
       rootRef.authWithOAuthPopup(provider, function(err, user) {
         if (err) reject(err);
         if (user) {
@@ -111,14 +116,15 @@ var SocoboAuth = {
   },
   /**
    * auth user with Email Address
+   * @param baseURL
    * @param userObj
    * @param isRegister
    * @returns {Promise}
    */
-  loginWithEmailaddress: function(userObj, isRegister) {
+  loginWithEmailaddress: function(baseURL, userObj, isRegister) {
     var that = this;
     return new Promise(function(resolve, reject) {
-      var rootRef = new Firebase(firebaseBaseUrl);
+      var rootRef = new Firebase(baseURL);
       rootRef.authWithPassword(userObj, function onAuth(err, user) {
         if (err) reject(err);
         if (user) {
