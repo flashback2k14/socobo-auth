@@ -1,108 +1,34 @@
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../paper-toolbar/paper-toolbar.html">
-<link rel="import" href="../paper-material/paper-material.html">
-<link rel="import" href="../paper-button/paper-button.html">
-<link rel="import" href="../paper-input/paper-input.html">
-<link rel="import" href="../paper-input/paper-input-char-counter.html">
-<link rel="import" href="../neon-animation/neon-animation-runner-behavior.html">
-<link rel="import" href="../neon-animation/neon-animations.html">
-<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="elements.html">
 
 <!--
 The following custom properties and mixins are available for styling:
 
 Custom property | Description | Default
 ----------------|-------------|----------
-`--socobo-element-registration-container-theme` | Styling Container that holds all Elements | `{}`
-`--socobo-element-registration-label-container-theme` | Styling Headline Label Container | `{}`
-`--socobo-element-registration-label-text-theme` | Styling Headline Label | `{}`
-`--socobo-element-registration-input-container-theme` | Styling Container that holds all Input Elements | `{}`
-`--socobo-element-registration-social-button-container-theme` | Styling Social Button Container | `{}`
-`--socobo-element-registration-social-btn-theme` | Styling for all Social Buttons | `{}`
-`--socobo-element-registration-btn-google-plus-theme` | Styling Google+ Button | `{}`
-`--socobo-element-registration-btn-twitter-theme` | Styling Twitter Button | `{}`
-`--socobo-element-registration-btn-facebook-theme` | Styling Facebook Button | `{}`
-`--socobo-element-registration-btn-register-email-theme` | Styling Register Button | `{}`
-`--socobo-element-registration-register-input-container-theme` | Styling Input Element Container | `{}`
-`--socobo-element-registration-login-container-theme` | Styling Hyperlink to Login Element container | `{}`
+`--socobo-auth-registration-container-bg-color` | Styling Container Background Color | `{#EEEEEE}`
+`--socobo-auth-registration-container-theme` | Styling Container that holds all Elements | `{}`
+`--socobo-auth-registration-label-container-theme` | Styling Headline Label Container | `{}`
+`--socobo-auth-registration-label-text-theme` | Styling Headline Label | `{}`
+`--socobo-auth-registration-input-container-theme` | Styling Container that holds all Input Elements | `{}`
+`--socobo-auth-registration-social-button-container-theme` | Styling Social Button Container | `{}`
+`--socobo-auth-registration-social-btn-theme` | Styling for all Social Buttons | `{}`
+`--socobo-auth-registration-btn-google-plus-theme` | Styling Google+ Button | `{}`
+`--socobo-auth-registration-btn-twitter-theme` | Styling Twitter Button | `{}`
+`--socobo-auth-registration-btn-facebook-theme` | Styling Facebook Button | `{}`
+`--socobo-auth-registration-register-button-color` | Styling Register Button Foreground Color | `{#FFFFFF}`
+`--socobo-auth-registration-register-button-bg-color` | Styling Register Button Background Color | `{#388E3C}`
+`--socobo-auth-registration-btn-register-email-theme` | Styling Register Button | `{}`
+`--socobo-auth-registration-register-input-container-theme` | Styling Input Element Container | `{}`
+`--socobo-auth-registration-login-container-theme` | Styling Hyperlink to Login Element container | `{}`
+`--socobo-auth-registration-hyperlink-theme` | Styling Hyperlink | `{}`
+`--socobo-auth-registration-hyperlink-hover-theme` | Styling Hyperlink Hover | `{}`
 
 @demo demo/index.html
 -->
-<dom-module id="socobo-element-registration">
+<dom-module id="socobo-auth-registration">
   <style>
     :host {
       display: none;
-    }
-    .container {
-      width: 100%;
-      height: 100%;
-      background-color: #eeeeee;
-      @apply(--socobo-element-registration-container-theme);
-    }
-    .label-container {
-      background-color: #304FFE;
-      @apply(--socobo-element-registration-label-container-theme);
-    }
-    .label-text {
-      margin: 0;
-      padding: 20px 0 10px 5px;
-      @apply(--socobo-element-registration-label-text-theme);
-    }
-    .input-container {
-      @apply(--layout-horizontal);
-      @apply(--socobo-element-registration-input-container-theme);
-    }
-    .social-button-container {
-      width: 40%;
-      margin-top: 50px;
-      margin-left: 9px;
-      @apply(--layout-verical);
-      @apply(--socobo-element-registration-social-button-container-theme);
-    }
-    .social-btn {
-      margin-left: 15px;
-      margin-bottom: 5px;
-      width: 150px;
-      @apply(--socobo-element-registration-social-btn-theme);
-    }
-    .btn-google-plus {
-      color: #ffffff;
-      background-color: #dd4b39;
-      @apply(--socobo-element-registration-btn-google-plus-theme)
-    }
-    .btn-twitter {
-      color: #ffffff;
-      background-color: #55acee;
-      @apply(--socobo-element-registration-btn-twitter-theme)
-    }
-    .btn-facebook {
-      color: #ffffff;
-      background-color: #3b5998;
-      @apply(--socobo-element-registration-btn-facebook-theme)
-    }
-    .btn-register-email {
-      float: right;
-      margin-top: 5px;
-      margin-right: 0;
-      width: 150px;
-      color: #ffffff;
-      background-color: #388E3C;
-      @apply(--socobo-element-registration-btn-register-email-theme)
-    }
-    .register-input-container {
-      width: 55%;
-      margin-top: 10px;
-      @apply(--layout-verical);
-      @apply(--socobo-element-registration-register-input-container-theme);
-    }
-    .login-container {
-      width: 50%;
-      margin-top: -18px;
-      padding-left: 24px;
-      padding-bottom: 10px;
-      white-space: nowrap;
-      @apply(--layout-horizontal);
-      @apply(--socobo-element-registration-login-container-theme);
     }
     @media all and (min-height: 400px) and (max-height: 650px) {
       .input-container {
@@ -129,7 +55,7 @@ Custom property | Description | Default
         padding-left: 0;
       }
     }
-    @media all and (min-height: 650px) and (max-height: 730px) {
+    @media all and (min-height: 651px) and (max-height: 730px) {
       .input-container {
         @apply(--layout-vertical);
       }
@@ -157,11 +83,89 @@ Custom property | Description | Default
         word-wrap: break-word;
       }
     }
+    .container {
+      width: 100%;
+      height: 100%;
+      background-color: var(--socobo-auth-registration-container-bg-color, #EEEEEE);
+      @apply(--socobo-auth-registration-container-theme);
+    }
+    .label-container {
+      @apply(--socobo-auth-registration-label-container-theme);
+    }
+    .label-text {
+      margin: 0;
+      padding: 20px 0 10px 5px;
+      @apply(--socobo-auth-registration-label-text-theme);
+    }
+    .input-container {
+      @apply(--layout-horizontal);
+      @apply(--socobo-auth-registration-input-container-theme);
+    }
+    .social-button-container {
+      width: 40%;
+      margin-top: 50px;
+      margin-left: 9px;
+      @apply(--layout-verical);
+      @apply(--socobo-auth-registration-social-button-container-theme);
+    }
+    .social-btn {
+      margin-left: 15px;
+      margin-bottom: 5px;
+      width: 150px;
+      @apply(--socobo-auth-registration-social-btn-theme);
+    }
+    .btn-google-plus {
+      color: #ffffff;
+      background-color: #dd4b39;
+      @apply(--socobo-auth-registration-btn-google-plus-theme)
+    }
+    .btn-twitter {
+      color: #FFFFFF;
+      background-color: #55ACEE;
+      @apply(--socobo-auth-registration-btn-twitter-theme)
+    }
+    .btn-facebook {
+      color: #FFFFFF;
+      background-color: #3B5998;
+      @apply(--socobo-auth-registration-btn-facebook-theme)
+    }
+    .btn-register-email {
+      float: right;
+      margin-top: 5px;
+      margin-right: 0;
+      width: 150px;
+      color: var(--socobo-auth-registration-register-button-color, #FFFFFF);
+      background-color: var(--socobo-auth-registration-register-button-bg-color, #388E3C);
+      @apply(--socobo-auth-registration-btn-register-email-theme)
+    }
+    .register-input-container {
+      width: 55%;
+      margin-top: 10px;
+      margin-right: 20px;
+      @apply(--layout-verical);
+      @apply(--socobo-auth-registration-register-input-container-theme);
+    }
+    .login-container {
+      width: 50%;
+      margin-top: -18px;
+      padding-left: 14px;
+      padding-bottom: 10px;
+      white-space: nowrap;
+      @apply(--layout-horizontal);
+      @apply(--socobo-auth-registration-login-container-theme);
+    }
+    .nav-hyperlink:link {
+      text-decoration: none;
+      @apply(--socobo-auth-registration-hyperlink-theme);
+    }
+    .nav-hyperlink:hover {
+      text-decoration: underline;
+      @apply(--socobo-auth-registration-hyperlink-hover-theme);
+    }
   </style>
 
   <template>
     <div class="container">
-
       <div class="label-container">
         <paper-material elevation="3" animated="true">
           <paper-toolbar>
@@ -169,7 +173,6 @@ Custom property | Description | Default
           </paper-toolbar>
         </paper-material>
       </div>
-
       <div class="input-container">
         <div class="social-button-container">
           <paper-button
@@ -188,7 +191,6 @@ Custom property | Description | Default
             on-click="registerWithFacebook">Facebook
           </paper-button>
         </div>
-
         <div class="register-input-container">
           <paper-input
             id="txtEmailAddress"
@@ -226,9 +228,8 @@ Custom property | Description | Default
         </div>
       </div>
       <div class="login-container">
-        <a href="#" on-click="goToLogin">You have an Account? Go to login...</a>
+        <a class="nav-hyperlink" href="#" on-click="goToLogin">You have an Account? Go to login...</a>
       </div>
-
     </div>
   </template>
 </dom-module>
@@ -236,7 +237,7 @@ Custom property | Description | Default
 <script>
   (function() {
     Polymer({
-      is: 'socobo-element-registration',
+      is: 'socobo-auth-registration',
       /**
        * This Event is fired if the hyperlink is pressed to navigate to the Login Element. <br/>
        * @event go-to-login
@@ -278,7 +279,11 @@ Custom property | Description | Default
         firebasebaseurl: {
           type: String
         },
-
+        /**
+         * Configuration for the Animation. <br/>
+         * `Entry`: scale-up-animation <br/>
+         * `Exit`: fade-out-animation
+         */ 
         animationConfig: {
           type: Object,
           value: function() {
@@ -394,7 +399,7 @@ Custom property | Description | Default
           var passwordAgain = this.$.txtPasswordAgain.value;
 
           if (password.length >= 8 && passwordAgain.length >= 8) {
-            if (password.match(passwordAgain.value)) {
+            if (password.match(passwordAgain)) {
               isPasswordMatching = true;
             }
           }

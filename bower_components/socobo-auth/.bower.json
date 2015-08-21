@@ -1,6 +1,6 @@
 {
-  "name": "socobo-login-registration",
-  "description": "Elements for login and registration for Socobo-Frontend",
+  "name": "socobo-auth",
+  "description": "Elements for Authentication for Socobo-Project",
   "author": [
     "flashback2k14"
   ],
@@ -9,23 +9,21 @@
     "web-component",
     "polymer",
     "socobo",
-    "frontend",
-    "login",
-    "registration"
+    "project",
+    "authentication"
   ],
   "main": "index.html",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git://github.com/flashback2k14/socobo-login-registration"
+    "url": "git://github.com/flashback2k14/socobo-auth"
   },
   "license": "http://polymer.github.io/LICENSE.txt",
-  "homepage": "http://flashback2k14.github.io/socobo-login-registration",
+  "homepage": "http://flashback2k14.github.io/socobo-auth",
   "ignore": [],
   "dependencies": {
-    "iron-elements": "PolymerElements/iron-elements#1.0.0",
-    "paper-elements": "PolymerElements/paper-elements#1.0.1",
-    "platinum-elements": "PolymerElements/platinum-elements#1.0.1",
+    "iron-elements": "PolymerElements/iron-elements#1.0.2",
+    "paper-elements": "PolymerElements/paper-elements#1.0.2",
     "neon-elements": "PolymerElements/neon-elements#1.0.0",
     "polymer": "Polymer/polymer#^1.0.0"
   },
@@ -36,13 +34,13 @@
     "test-fixture": "polymerelements/test-fixture#^1.0.0",
     "web-component-tester": "*"
   },
-  "_release": "4f5b5f35bd",
+  "_release": "9f8aabf941",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "4f5b5f35bdc259f7f2ac5f5661d983ae028ba617"
+    "commit": "9f8aabf9416c2b069444c21bffed4021ad19e265"
   },
-  "_source": "git://github.com/flashback2k14/socobo-login-registration.git",
+  "_source": "git://github.com/flashback2k14/socobo-auth.git",
   "_target": "master",
-  "_originalSource": "flashback2k14/socobo-login-registration"
+  "_originalSource": "flashback2k14/socobo-auth"
 }

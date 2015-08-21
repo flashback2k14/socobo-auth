@@ -1,7 +1,7 @@
 {
-  "name": "socobo-login-registration",
-  "version": "0.0.9.1",
-  "description": "Elements for login and registration for Socobo-Frontend",
+  "name": "socobo-auth",
+  "version": "0.0.9.3",
+  "description": "Elements for Authentication for Socobo-Project",
   "author": [
     "flashback2k14"
   ],
@@ -10,23 +10,21 @@
     "web-component",
     "polymer",
     "socobo",
-    "frontend",
-    "login",
-    "registration"
+    "project",
+    "authentication"
   ],
   "main": "index.html",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git://github.com/flashback2k14/socobo-login-registration"
+    "url": "git://github.com/flashback2k14/socobo-auth"
   },
   "license": "http://polymer.github.io/LICENSE.txt",
-  "homepage": "http://flashback2k14.github.io/socobo-login-registration",
+  "homepage": "http://flashback2k14.github.io/socobo-auth",
   "ignore": [],
   "dependencies": {
-    "iron-elements": "PolymerElements/iron-elements#1.0.0",
-    "paper-elements": "PolymerElements/paper-elements#1.0.1",
-    "platinum-elements": "PolymerElements/platinum-elements#1.0.1",
+    "iron-elements": "PolymerElements/iron-elements#1.0.2",
+    "paper-elements": "PolymerElements/paper-elements#1.0.2",
     "neon-elements": "PolymerElements/neon-elements#1.0.0",
     "polymer": "Polymer/polymer#^1.0.0"
   },
