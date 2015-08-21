@@ -1,9 +1,4 @@
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../paper-material/paper-material.html">
-<link rel="import" href="../paper-fab/paper-fab.html">
-<link rel="import" href="../iron-icons/iron-icons.html">
-<link rel="import" href="socobo-element-login.html">
-<link rel="import" href="socobo-element-registration.html">
+<link rel="import" href="elements.html">
 <script src="lib/socobo-auth.js"></script>
 
 <!--
@@ -11,14 +6,14 @@ The following custom properties and mixins are available for styling:
 
 Custom property | Description | Default
 ----------------|-------------|----------
-`--socobo-login-registration-container-theme` | Styling the Container that holds the Background Image and the Login / Register Element | `{}`
-`--socobo-login-registration-bg-image-theme` | Styling the Background Image | `{}`
-`--socobo-login-registration-content-theme` | Styling the Area for the Login / Register Element | `{}`
-`--socobo-login-registration-close-button-theme` | Styling the Close Button | `{}`
+`--socobo-auth-container-theme` | Styling the Container that holds the Background Image and the Login / Register Element | `{}`
+`--socobo-auth-bg-image-theme` | Styling the Background Image | `{}`
+`--socobo-auth-content-theme` | Styling the Area for the Login / Register Element | `{}`
+`--socobo-auth-close-button-theme` | Styling the Close Button | `{}`
 
 @demo demo/index.html
 -->
-<dom-module id="socobo-login-registration">
+<dom-module id="socobo-auth">
   <style>
     :host {
       display: block;
@@ -29,7 +24,7 @@ Custom property | Description | Default
       height: 100%;
       margin: 0;
       padding: 0;
-      @apply(--socobo-login-registration-container-theme);
+      @apply(--socobo-auth-container-theme);
     }
     .background-image {
       background-image: url('images/bg-img-2.png');
@@ -44,7 +39,7 @@ Custom property | Description | Default
       -o-filter: blur(5px);
       -ms-filter: blur(5px);
       filter: blur(5px);
-      @apply(--socobo-login-registration-bg-image-theme);
+      @apply(--socobo-auth-bg-image-theme);
     }
     .content {
       position: absolute;
@@ -57,14 +52,14 @@ Custom property | Description | Default
       z-index: 15;
       border-radius: 3px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
-      @apply(--socobo-login-registration-content-theme);
+      @apply(--socobo-auth-content-theme);
     }
     .close-button {
       position: absolute;
       top: 20px;
       right: 20px;
       z-index: 20;
-      @apply(--socobo-login-registration-close-button-theme);
+      @apply(--socobo-auth-close-button-theme);
     }
     .default-show-login {
       display: block;
@@ -106,30 +101,30 @@ Custom property | Description | Default
 
   <template>
     <div class="container">
-      <paper-fab class="close-button" mini icon="close" on-click="closeLoginRegistration"></paper-fab>
+      <paper-fab class="close-button" mini icon="close" on-click="closeAuth"></paper-fab>
 
       <div class="background-image"></div>
 
       <div class="content">
         <paper-material id="pmLogin" class="default-show-login" elevation="5">
-          <socobo-element-login
+          <socobo-auth-login
             id="elLogin"
             firebasebaseurl="[[firebasebaseurl]]"
             on-login-successful="handleLoginSuccessful"
             on-login-failed="handleLoginFailed"
             on-go-to-register="handleGoToRegister">
-          </socobo-element-login>
+          </socobo-auth-login>
         </paper-material>
 
         <paper-material id="pmRegistration" class="default-hide-registration" elevation="5">
-          <socobo-element-registration
+          <socobo-auth-registration
             id="elRegister"
             firebasebaseurl="[[firebasebaseurl]]"
             on-login-successful="handleLoginSuccessful"
             on-login-failed="handleLoginFailed"
             on-passwords-not-matching="handlePasswordsNotMatching"
             on-go-to-login="handleGoToLogin">
-          </socobo-element-registration>
+          </socobo-auth-registration>
         </paper-material>
       </div>
     </div>
@@ -139,10 +134,10 @@ Custom property | Description | Default
 <script>
   (function() {
     Polymer({
-      is: 'socobo-login-registration',
+      is: 'socobo-auth',
       /**
        * This Event is fired if the close button is pressed. <br/>
-       * @event handle-close-login-registration
+       * @event handle-close-auth
        */
       /**
        * This Event is fired if the login / registration is successful. <br/>
@@ -171,10 +166,10 @@ Custom property | Description | Default
       },
       /**
        * Method for firing custom event to close the Element. <br/>
-       * @method closeLoginRegistration
+       * @method closeAuth
        */
-      closeLoginRegistration: function() {
-        this.fire('handle-close-login-registration');
+      closeAuth: function() {
+        this.fire('handle-close-auth');
       },
       /**
        * Method for firing custom event to handle successful login. <br/>
