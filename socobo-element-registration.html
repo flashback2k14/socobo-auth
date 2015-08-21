@@ -13,6 +13,7 @@ The following custom properties and mixins are available for styling:
 
 Custom property | Description | Default
 ----------------|-------------|----------
+`--socobo-element-registration-container-bg-color` | Styling Container Background Color | `{#EEEEEE}`
 `--socobo-element-registration-container-theme` | Styling Container that holds all Elements | `{}`
 `--socobo-element-registration-label-container-theme` | Styling Headline Label Container | `{}`
 `--socobo-element-registration-label-text-theme` | Styling Headline Label | `{}`
@@ -22,9 +23,13 @@ Custom property | Description | Default
 `--socobo-element-registration-btn-google-plus-theme` | Styling Google+ Button | `{}`
 `--socobo-element-registration-btn-twitter-theme` | Styling Twitter Button | `{}`
 `--socobo-element-registration-btn-facebook-theme` | Styling Facebook Button | `{}`
+`--socobo-element-registration-register-button-color` | Styling Register Button Foreground Color | `{#FFFFFF}`
+`--socobo-element-registration-register-button-bg-color` | Styling Register Button Background Color | `{#388E3C}`
 `--socobo-element-registration-btn-register-email-theme` | Styling Register Button | `{}`
 `--socobo-element-registration-register-input-container-theme` | Styling Input Element Container | `{}`
 `--socobo-element-registration-login-container-theme` | Styling Hyperlink to Login Element container | `{}`
+`--socobo-element-registration-hyperlink-theme` | Styling Hyperlink | `{}`
+`--socobo-element-registration-hyperlink-hover-theme` | Styling Hyperlink Hover | `{}`
 
 @demo demo/index.html
 -->
@@ -33,14 +38,66 @@ Custom property | Description | Default
     :host {
       display: none;
     }
+    @media all and (min-height: 400px) and (max-height: 650px) {
+      .input-container {
+        @apply(--layout-vertical);
+      }
+      .social-button-container {
+        width: 95%;
+        margin-top: 15px;
+        margin-left: 10px;
+      }
+      .social-btn {
+        width: 100px;
+        margin-left: 0;
+      }
+      .register-input-container {
+        width: 93%;
+        margin-top: 3px;
+        margin-left: 10px;
+      }
+      .login-container {
+        width: 60%;
+        margin-top: 13px;
+        margin-left: 10px;
+        padding-left: 0;
+      }
+    }
+    @media all and (min-height: 651px) and (max-height: 730px) {
+      .input-container {
+        @apply(--layout-vertical);
+      }
+      .social-button-container {
+        width: 90%;
+        margin-top: 20px;
+        margin-left: 20px;
+      }
+      .social-btn {
+        width: 100px;
+        margin-left: 10px;
+      }
+      .register-input-container {
+        width: 93%;
+        margin-top: 20px;
+        margin-left: 10px;
+      }
+      .login-container {
+        width: 40%;
+        margin-top: -45px;
+        margin-left: 10px;
+        padding-left: 0;
+        padding-bottom: 5px;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+    }
     .container {
       width: 100%;
       height: 100%;
-      background-color: #eeeeee;
+      background-color: var(--socobo-element-registration-container-bg-color, #EEEEEE);
       @apply(--socobo-element-registration-container-theme);
     }
     .label-container {
-      background-color: #304FFE;
       @apply(--socobo-element-registration-label-container-theme);
     }
     .label-text {
@@ -71,13 +128,13 @@ Custom property | Description | Default
       @apply(--socobo-element-registration-btn-google-plus-theme)
     }
     .btn-twitter {
-      color: #ffffff;
-      background-color: #55acee;
+      color: #FFFFFF;
+      background-color: #55ACEE;
       @apply(--socobo-element-registration-btn-twitter-theme)
     }
     .btn-facebook {
-      color: #ffffff;
-      background-color: #3b5998;
+      color: #FFFFFF;
+      background-color: #3B5998;
       @apply(--socobo-element-registration-btn-facebook-theme)
     }
     .btn-register-email {
@@ -85,83 +142,38 @@ Custom property | Description | Default
       margin-top: 5px;
       margin-right: 0;
       width: 150px;
-      color: #ffffff;
-      background-color: #388E3C;
+      color: var(--socobo-element-registration-register-button-color, #FFFFFF);
+      background-color: var(--socobo-element-registration-register-button-bg-color, #388E3C);
       @apply(--socobo-element-registration-btn-register-email-theme)
     }
     .register-input-container {
       width: 55%;
       margin-top: 10px;
+      margin-right: 20px;
       @apply(--layout-verical);
       @apply(--socobo-element-registration-register-input-container-theme);
     }
     .login-container {
       width: 50%;
       margin-top: -18px;
-      padding-left: 24px;
+      padding-left: 14px;
       padding-bottom: 10px;
       white-space: nowrap;
       @apply(--layout-horizontal);
       @apply(--socobo-element-registration-login-container-theme);
     }
-    @media all and (min-height: 400px) and (max-height: 650px) {
-      .input-container {
-        @apply(--layout-vertical);
-      }
-      .social-button-container {
-        width: 95%;
-        margin-top: 15px;
-        margin-left: 10px;
-      }
-      .social-btn {
-        width: 100px;
-        margin-left: 0;
-      }
-      .register-input-container {
-        width: 93%;
-        margin-top: 3px;
-        margin-left: 10px;
-      }
-      .login-container {
-        width: 60%;
-        margin-top: 13px;
-        margin-left: 10px;
-        padding-left: 0;
-      }
+    .nav-hyperlink:link {
+      text-decoration: none;
+      @apply(--socobo-element-registration-hyperlink-theme);
     }
-    @media all and (min-height: 650px) and (max-height: 730px) {
-      .input-container {
-        @apply(--layout-vertical);
-      }
-      .social-button-container {
-        width: 90%;
-        margin-top: 20px;
-        margin-left: 20px;
-      }
-      .social-btn {
-        width: 100px;
-        margin-left: 10px;
-      }
-      .register-input-container {
-        width: 93%;
-        margin-top: 20px;
-        margin-left: 10px;
-      }
-      .login-container {
-        width: 40%;
-        margin-top: -45px;
-        margin-left: 10px;
-        padding-left: 0;
-        padding-bottom: 5px;
-        white-space: pre-wrap;
-        word-wrap: break-word;
-      }
+    .nav-hyperlink:hover {
+      text-decoration: underline;
+      @apply(--socobo-element-registration-hyperlink-hover-theme);
     }
   </style>
 
   <template>
     <div class="container">
-
       <div class="label-container">
         <paper-material elevation="3" animated="true">
           <paper-toolbar>
@@ -169,7 +181,6 @@ Custom property | Description | Default
           </paper-toolbar>
         </paper-material>
       </div>
-
       <div class="input-container">
         <div class="social-button-container">
           <paper-button
@@ -188,7 +199,6 @@ Custom property | Description | Default
             on-click="registerWithFacebook">Facebook
           </paper-button>
         </div>
-
         <div class="register-input-container">
           <paper-input
             id="txtEmailAddress"
@@ -226,9 +236,8 @@ Custom property | Description | Default
         </div>
       </div>
       <div class="login-container">
-        <a href="#" on-click="goToLogin">You have an Account? Go to login...</a>
+        <a class="nav-hyperlink" href="#" on-click="goToLogin">You have an Account? Go to login...</a>
       </div>
-
     </div>
   </template>
 </dom-module>

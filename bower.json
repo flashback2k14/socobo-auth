@@ -1,7 +1,7 @@
 {
   "name": "socobo-login-registration",
-  "version": "0.0.9.1",
-  "description": "Elements for login and registration for Socobo-Frontend",
+  "version": "0.0.9.2",
+  "description": "Elements for login and registration for Socobo-Project",
   "author": [
     "flashback2k14"
   ],
@@ -10,7 +10,7 @@
     "web-component",
     "polymer",
     "socobo",
-    "frontend",
+    "project",
     "login",
     "registration"
   ],
@@ -24,9 +24,8 @@
   "homepage": "http://flashback2k14.github.io/socobo-login-registration",
   "ignore": [],
   "dependencies": {
-    "iron-elements": "PolymerElements/iron-elements#1.0.0",
-    "paper-elements": "PolymerElements/paper-elements#1.0.1",
-    "platinum-elements": "PolymerElements/platinum-elements#1.0.1",
+    "iron-elements": "PolymerElements/iron-elements#1.0.2",
+    "paper-elements": "PolymerElements/paper-elements#1.0.2",
     "neon-elements": "PolymerElements/neon-elements#1.0.0",
     "polymer": "Polymer/polymer#^1.0.0"
   },
