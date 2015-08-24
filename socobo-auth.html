@@ -199,8 +199,8 @@ Custom property | Description | Default
        * @method handleGoToRegister
        */
       handleGoToRegister: function() {
-        document.querySelector('#elLogin').hide();
-        document.querySelector('#elRegister').show();
+        this.$.elLogin.hide();
+        this.$.elRegister.show();
         this.$.pmLogin.style.display = "none";
         this.$.pmRegistration.style.display = "block";
       },
@@ -209,8 +209,8 @@ Custom property | Description | Default
        * @method handleGoToLogin
        */
       handleGoToLogin: function() {
-        document.querySelector('#elRegister').hide();
-        document.querySelector('#elLogin').show();
+        this.$.elRegister.hide();
+        this.$.elLogin.show();
         this.$.pmRegistration.style.display = "none";
         this.$.pmLogin.style.display = "block";
       }
