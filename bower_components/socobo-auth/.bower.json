@@ -34,11 +34,11 @@
     "test-fixture": "polymerelements/test-fixture#^1.0.0",
     "web-component-tester": "*"
   },
-  "_release": "9f8aabf941",
+  "_release": "795228f033",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "9f8aabf9416c2b069444c21bffed4021ad19e265"
+    "commit": "795228f0333c0133e6eb9026d949e3448d0e2084"
   },
   "_source": "git://github.com/flashback2k14/socobo-auth.git",
   "_target": "master",
