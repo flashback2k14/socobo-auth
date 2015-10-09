@@ -55,7 +55,7 @@ var SocoboAuth = {
   _getUserEmailAddress: function(userObj) {
     switch(userObj.provider) {
       case "password":
-        return user.password.email;
+        return userObj.password.email;
       case "google":
         if (userObj.google.hasOwnProperty("email")) return userObj.google.email;
         else return userObj.google.cachedUserProfile.link;

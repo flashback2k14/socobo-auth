@@ -15,10 +15,11 @@ Custom property | Description | Default
 `--socobo-auth-registration-btn-google-plus-theme` | Styling Google+ Button | `{}`
 `--socobo-auth-registration-btn-twitter-theme` | Styling Twitter Button | `{}`
 `--socobo-auth-registration-btn-facebook-theme` | Styling Facebook Button | `{}`
+`--socobo-auth-registration-register-input-container-theme` | Styling Input Element Container | `{}`
+`--socobo-auth-registration-btn-register-email-container-theme` | Styling Register with Email Button Container | `{}`
 `--socobo-auth-registration-register-button-color` | Styling Register Button Foreground Color | `{#FFFFFF}`
 `--socobo-auth-registration-register-button-bg-color` | Styling Register Button Background Color | `{#388E3C}`
 `--socobo-auth-registration-btn-register-email-theme` | Styling Register Button | `{}`
-`--socobo-auth-registration-register-input-container-theme` | Styling Input Element Container | `{}`
 `--socobo-auth-registration-login-container-theme` | Styling Hyperlink to Login Element container | `{}`
 `--socobo-auth-registration-hyperlink-theme` | Styling Hyperlink | `{}`
 `--socobo-auth-registration-hyperlink-hover-theme` | Styling Hyperlink Hover | `{}`
@@ -30,66 +31,15 @@ Custom property | Description | Default
     :host {
       display: none;
     }
-    @media all and (min-height: 400px) and (max-height: 650px) {
-      .input-container {
-        @apply(--layout-vertical);
-      }
-      .social-button-container {
-        width: 95%;
-        margin-top: 15px;
-        margin-left: 10px;
-      }
-      .social-btn {
-        width: 100px;
-        margin-left: 0;
-      }
-      .register-input-container {
-        width: 93%;
-        margin-top: 3px;
-        margin-left: 10px;
-      }
-      .login-container {
-        width: 60%;
-        margin-top: 13px;
-        margin-left: 10px;
-        padding-left: 0;
-      }
-    }
-    @media all and (min-height: 651px) and (max-height: 730px) {
-      .input-container {
-        @apply(--layout-vertical);
-      }
-      .social-button-container {
-        width: 90%;
-        margin-top: 20px;
-        margin-left: 20px;
-      }
-      .social-btn {
-        width: 100px;
-        margin-left: 10px;
-      }
-      .register-input-container {
-        width: 93%;
-        margin-top: 20px;
-        margin-left: 10px;
-      }
-      .login-container {
-        width: 40%;
-        margin-top: -45px;
-        margin-left: 10px;
-        padding-left: 0;
-        padding-bottom: 5px;
-        white-space: pre-wrap;
-        word-wrap: break-word;
-      }
-    }
     .container {
+      @apply(--layout-vertical);
       width: 100%;
-      height: 100%;
+      height: 340px;
       background-color: var(--socobo-auth-registration-container-bg-color, #EEEEEE);
       @apply(--socobo-auth-registration-container-theme);
     }
     .label-container {
+      @apply(--layout-vertical);
       @apply(--socobo-auth-registration-label-container-theme);
     }
     .label-text {
@@ -102,13 +52,14 @@ Custom property | Description | Default
       @apply(--socobo-auth-registration-input-container-theme);
     }
     .social-button-container {
-      width: 40%;
-      margin-top: 50px;
-      margin-left: 9px;
       @apply(--layout-verical);
+      width: 40%;
+      margin-top: 45px;
+      margin-left: 9px;
       @apply(--socobo-auth-registration-social-button-container-theme);
     }
     .social-btn {
+      margin-top: 10px;
       margin-left: 15px;
       margin-bottom: 5px;
       width: 150px;
@@ -129,29 +80,36 @@ Custom property | Description | Default
       background-color: #3B5998;
       @apply(--socobo-auth-registration-btn-facebook-theme)
     }
+    .register-input-container {
+      @apply(--layout-verical);
+      width: 55%;
+      margin-top: 10px;
+      margin-right: 20px;
+      @apply(--socobo-auth-registration-register-input-container-theme);
+    }
+    .btn-register-email-container {
+      @apply(--layout-horizontal);
+      @apply(--layout-end-justified);
+      width: 100%;
+      @apply(--socobo-auth-registration-btn-register-email-container-theme);
+    }
     .btn-register-email {
       float: right;
-      margin-top: 5px;
+      margin-top: 20px;
       margin-right: 0;
       width: 150px;
       color: var(--socobo-auth-registration-register-button-color, #FFFFFF);
       background-color: var(--socobo-auth-registration-register-button-bg-color, #388E3C);
       @apply(--socobo-auth-registration-btn-register-email-theme)
     }
-    .register-input-container {
-      width: 55%;
-      margin-top: 10px;
-      margin-right: 20px;
-      @apply(--layout-verical);
-      @apply(--socobo-auth-registration-register-input-container-theme);
-    }
     .login-container {
+      @apply(--layout-horizontal);
       width: 50%;
-      margin-top: -18px;
+      margin-top: -23px;
+      margin-left: 10px;
       padding-left: 14px;
       padding-bottom: 10px;
       white-space: nowrap;
-      @apply(--layout-horizontal);
       @apply(--socobo-auth-registration-login-container-theme);
     }
     .nav-hyperlink:link {
@@ -161,6 +119,78 @@ Custom property | Description | Default
     .nav-hyperlink:hover {
       text-decoration: underline;
       @apply(--socobo-auth-registration-hyperlink-hover-theme);
+    }
+    @media all and (min-height: 400px) and (max-height: 650px) {
+      .container {
+        @apply(--layout-vertical);
+        height: 400px;
+      }
+      .input-container {
+        @apply(--layout-vertical);
+      }
+      .social-button-container {
+        @apply(--layout-horizontal);
+        width: 95%;
+        margin-top: 10px;
+        margin-left: 10px;
+      }
+      .social-btn {
+        width: 100px;
+        margin-left: 5px;
+        font-size: small;
+      }
+      .register-input-container {
+        width: 90%;
+        margin-top: 0;
+        margin-left: 15px;
+        margin-right: 15px;
+      }
+      .btn-register-email {
+        margin-top: 8px;
+      }
+      .login-container {
+        width: 60%;
+        margin-top: 13px;
+        margin-left: 10px;
+        padding-left: 0;
+      }
+    }
+    @media all and (min-height: 651px) and (max-height: 730px) {
+      .container {
+        @apply(--layout-vertical);
+        height: 400px;
+      }
+      .input-container {
+        @apply(--layout-vertical);
+      }
+      .social-button-container {
+        @apply(--layout-horizontal);
+        width: 90%;
+        margin-top: 15px;
+        margin-left: 20px;
+      }
+      .social-btn {
+        width: 100px;
+        margin-left: 10px;
+      }
+      .register-input-container {
+        width: 90%;
+        margin-top: 15px;
+        margin-left: 20px;
+        margin-right: 20px;
+      }
+      .btn-register-email {
+        margin-top: 10px;
+      }
+      .login-container {
+        width: 50%;
+        margin-top: -40px;
+        margin-left: 20px;
+        padding-left: 0;
+        padding-bottom: 5px;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
     }
   </style>
 
@@ -220,11 +250,13 @@ Custom property | Description | Default
             maxlength="30"
             error-message="min. 8 character (only letters, numbers)">
           </paper-input>
-          <paper-button
-            class="btn-register-email"
-            raised
-            on-click="registerWithEmail">Register
-          </paper-button>
+          <div class="btn-register-email-container">
+            <paper-button
+              class="btn-register-email"
+              raised
+              on-click="registerWithEmail">Register
+            </paper-button>
+          </div>
         </div>
       </div>
       <div class="login-container">
@@ -283,7 +315,7 @@ Custom property | Description | Default
          * Configuration for the Animation. <br/>
          * `Entry`: scale-up-animation <br/>
          * `Exit`: fade-out-animation
-         */ 
+         */
         animationConfig: {
           type: Object,
           value: function() {

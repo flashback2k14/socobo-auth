@@ -8,8 +8,19 @@
     <link rel="import" href="../socobo-auth.html">
   </head>
   <body>
-    <socobo-auth></socobo-auth>
+    <template is="dom-bind" id="demo">
+      <socobo-auth user-login='{{userLogin}}'></socobo-auth>
+    </template>
     <!--firebase-->
-    <script src='https://cdn.firebase.com/js/client/2.2.9/firebase.js'></script>
+    <script src='https://cdn.firebase.com/js/client/2.3.1/firebase.js'></script>
+    <!-- Demo Data -->
+    <script type="text/javascript">
+      var demo = document.querySelector('#demo');
+      demo.userLogin = {
+        "firebaseUrl": "https://<YOUR_FIREBASE_DATABASE>.firebaseio.com/",
+        "userId": "",
+        "expires": ""
+      };
+    </script>
   </body>
 </html>
