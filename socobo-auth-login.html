@@ -411,7 +411,7 @@ Custom property | Description | Default
             'password': password
           };
 
-          SocoboAuth.loginWithEmailaddress(fbBaseURL, userObj, false)
+          SocoboAuth.getInstance().loginWithEmailaddress(fbBaseURL, userObj, false)
             .then(function(user) {
               that.clearInputFields(true);
               that.fire('login-successful', user);
@@ -422,7 +422,8 @@ Custom property | Description | Default
             });
 
         } else {
-          SocoboAuth.loginWithProvider(fbBaseURL, provider, false)
+
+          SocoboAuth.getInstance().loginWithProvider(fbBaseURL, provider, false)
             .then(function(user) {
               that.clearInputFields(true);
               that.fire('login-successful', user);
