@@ -1,6 +1,6 @@
 {
   "name": "socobo-auth",
-  "version": "0.0.9.8",
+  "version": "0.0.9.8.4",
   "description": "Elements for Authentication for Socobo-Project",
   "author": [
     "flashback2k14"
@@ -23,13 +23,13 @@
   "homepage": "http://flashback2k14.github.io/socobo-auth",
   "ignore": [],
   "dependencies": {
-    "iron-elements": "PolymerElements/iron-elements#1.0.2",
-    "paper-elements": "PolymerElements/paper-elements#1.0.2",
+    "iron-elements": "PolymerElements/iron-elements#1.0.4",
+    "paper-elements": "PolymerElements/paper-elements#1.0.6",
     "neon-elements": "PolymerElements/neon-elements#1.0.0",
-    "polymer": "Polymer/polymer#^1.0.0"
+    "polymer": "Polymer/polymer#1.2.0"
   },
   "devDependencies": {
-    "iron-component-page": "polymerelements/iron-component-page#^1.0.0",
+    "iron-component-page": "polymerelements/iron-component-page#1.0.9",
     "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0",
     "iron-test-helpers": "polymerelements/iron-test-helpers#^1.0.0",
     "test-fixture": "polymerelements/test-fixture#^1.0.0",

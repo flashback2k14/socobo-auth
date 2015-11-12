@@ -1,5 +1,4 @@
 <link rel="import" href="elements.html">
-<script src="lib/socobo-auth.js"></script>
 
 <!--
 The following custom properties and mixins are available for styling:
@@ -14,98 +13,98 @@ Custom property | Description | Default
 @demo demo/index.html
 -->
 <dom-module id="socobo-auth">
-  <style>
-    :host {
-      display: block;
-      font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    }
-    .container {
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      @apply(--socobo-auth-container-theme);
-    }
-    .background-image {
-      background-image: url('images/bg-img-2.png');
-      background-size: cover;
-      height: 100%;
-      width: 100%;
-      position: absolute;
-      left: 0;
-      top: 0;
-      -webkit-filter: blur(5px);
-      -moz-filter: blur(5px);
-      -o-filter: blur(5px);
-      -ms-filter: blur(5px);
-      filter: blur(5px);
-      @apply(--socobo-auth-bg-image-theme);
-    }
-    .content {
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      margin: auto;
-      overflow: auto;
-      z-index: 15;
-      border-radius: 3px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
-      @apply(--socobo-auth-content-theme);
-    }
-    .close-button {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      z-index: 20;
-      @apply(--socobo-auth-close-button-theme);
-    }
-    .default-show-login {
-      display: block;
-    }
-    .default-hide-registration {
-      display: none;
-    }
-    @media all and (min-width: 0) and (max-width: 360px) {
-      .content {
-        width: 95%;
-        height: 400px;
-      }
-      .close-button {
-        right: 15px;
-      }
-    }
-    @media all and (min-width: 361px) and (max-width: 600px) {
-      .content {
-        width: 95%;
-        height: 400px;
-      }
-      .close-button {
-        right: 15px;
-      }
-    }
-    @media all and (min-width: 601px) and (max-width: 1280px) {
-      .content {
-        width: 48%;
-        height: 343px;
-      }
-    }
-    @media all and (min-width: 1281px) and (max-width: 1600px) {
-      .content {
-        width: 42%;
-        height: 343px;
-      }
-    }
-    @media all and (min-width: 1601px) and (max-width: 1920px) {
-      .content {
-        width: 34%;
-        height: 343px;
-      }
-    }
-  </style>
-
   <template>
+    <style>
+      :host {
+        display: block;
+        font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      }
+      .container {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      @apply(--socobo-auth-container-theme);
+      }
+      .background-image {
+        background-image: url('images/bg-img-2.png');
+        background-size: cover;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        -webkit-filter: blur(5px);
+        -moz-filter: blur(5px);
+        -o-filter: blur(5px);
+        -ms-filter: blur(5px);
+        filter: blur(5px);
+      @apply(--socobo-auth-bg-image-theme);
+      }
+      .content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+        overflow: auto;
+        z-index: 15;
+        border-radius: 3px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+      @apply(--socobo-auth-content-theme);
+      }
+      .close-button {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 20;
+      @apply(--socobo-auth-close-button-theme);
+      }
+      .default-show-login {
+        display: block;
+      }
+      .default-hide-registration {
+        display: none;
+      }
+      @media all and (min-width: 0) and (max-width: 360px) {
+        .content {
+          width: 95%;
+          height: 400px;
+        }
+        .close-button {
+          right: 15px;
+        }
+      }
+      @media all and (min-width: 361px) and (max-width: 600px) {
+        .content {
+          width: 95%;
+          height: 400px;
+        }
+        .close-button {
+          right: 15px;
+        }
+      }
+      @media all and (min-width: 601px) and (max-width: 1280px) {
+        .content {
+          width: 48%;
+          height: 343px;
+        }
+      }
+      @media all and (min-width: 1281px) and (max-width: 1600px) {
+        .content {
+          width: 42%;
+          height: 343px;
+        }
+      }
+      @media all and (min-width: 1601px) and (max-width: 1920px) {
+        .content {
+          width: 34%;
+          height: 343px;
+        }
+      }
+    </style>
+
     <div class="container">
       <paper-fab class="close-button" mini icon="close" on-click="closeAuth"></paper-fab>
 
@@ -135,96 +134,96 @@ Custom property | Description | Default
       </div>
     </div>
   </template>
-</dom-module>
 
-<script>
-  (function() {
-    Polymer({
-      is: 'socobo-auth',
-      /**
-       * This Event is fired if the close button is pressed. <br/>
-       * @event handle-close-auth
-       */
-      /**
-       * This Event is fired if the login / registration is successful. <br/>
-       * `Detail`: user {Object} <br/>
-       * @event handle-successful-login
-       */
-      /**
-       * This Event is fired if the login / registration is failed. <br/>
-       * `Detail`: error {Object} <br/>
-       * @event handle-failed-login
-       */
-      /**
-       * This Event is fired if the registration passwords not matching. <br/>
-       * @event handle-passwords-not-mathing
-       */
-      /**
-       * Element Properties.
-       */
-      properties: {
+  <script>
+    (function() {
+      Polymer({
+        is: 'socobo-auth',
         /**
-         * User Login Object
+         * This Event is fired if the close button is pressed. <br/>
+         * @event handle-close-auth
          */
-        userLogin: {
-          type: Object,
-          value: {
-            firebaseUrl: 'https://<YOUR_FIREBASE_DATABASE>.firebaseio.com/',
-            userId: 'user_xy',
-            expires: 1442332186
+        /**
+         * This Event is fired if the login / registration is successful. <br/>
+         * `Detail`: user {Object} <br/>
+         * @event handle-successful-login
+         */
+        /**
+         * This Event is fired if the login / registration is failed. <br/>
+         * `Detail`: error {Object} <br/>
+         * @event handle-failed-login
+         */
+        /**
+         * This Event is fired if the registration passwords not matching. <br/>
+         * @event handle-passwords-not-mathing
+         */
+        /**
+         * Element Properties.
+         */
+        properties: {
+          /**
+           * User Login Object
+           */
+          userLogin: {
+            type: Object,
+            value: {
+              firebaseUrl: 'https://<YOUR_FIREBASE_DATABASE>.firebaseio.com/',
+              userId: 'user_xy',
+              expires: 1442332186
+            }
           }
+        },
+        /**
+         * Method for firing custom event to close the Element. <br/>
+         * @method closeAuth
+         */
+        closeAuth: function() {
+          this.fire('handle-close-auth');
+        },
+        /**
+         * Method for firing custom event to handle successful login. <br/>
+         * @param {Object} e User Object
+         * @method handleLoginSuccessful
+         */
+        handleLoginSuccessful: function(e) {
+          this.fire('handle-successful-login', {'user': e.detail});
+        },
+        /**
+         * Method for firing custom event to handle failed login. <br/>
+         * @param {Object} e Error Object
+         * @method handleLoginFailed
+         */
+        handleLoginFailed: function(e) {
+          this.fire('handle-failed-login', {'error': e.detail});
+        },
+        /**
+         * Method for firing custom event to handle mismatching passwords in Register Element. <br/>
+         * @method handlePasswordsNotMatching
+         */
+        handlePasswordsNotMatching: function() {
+          this.fire('handle-passwords-not-mathing');
+        },
+        /**
+         * Method for showing Register Element. <br/>
+         * @method handleGoToRegister
+         */
+        handleGoToRegister: function() {
+          this.$.elLogin.hide();
+          this.$.elRegister.show();
+          this.$.pmLogin.style.display = "none";
+          this.$.pmRegistration.style.display = "block";
+        },
+        /**
+         * Method for showing login Element. <br/>
+         * @method handleGoToLogin
+         */
+        handleGoToLogin: function() {
+          this.$.elRegister.hide();
+          this.$.elLogin.show();
+          this.$.pmRegistration.style.display = "none";
+          this.$.pmLogin.style.display = "block";
         }
-      },
-      /**
-       * Method for firing custom event to close the Element. <br/>
-       * @method closeAuth
-       */
-      closeAuth: function() {
-        this.fire('handle-close-auth');
-      },
-      /**
-       * Method for firing custom event to handle successful login. <br/>
-       * @param {Object} e User Object
-       * @method handleLoginSuccessful
-       */
-      handleLoginSuccessful: function(e) {
-        this.fire('handle-successful-login', {'user': e.detail});
-      },
-      /**
-       * Method for firing custom event to handle failed login. <br/>
-       * @param {Object} e Error Object
-       * @method handleLoginFailed
-       */
-      handleLoginFailed: function(e) {
-        this.fire('handle-failed-login', {'error': e.detail});
-      },
-      /**
-       * Method for firing custom event to handle mismatching passwords in Register Element. <br/>
-       * @method handlePasswordsNotMatching
-       */
-      handlePasswordsNotMatching: function() {
-        this.fire('handle-passwords-not-mathing');
-      },
-      /**
-       * Method for showing Register Element. <br/>
-       * @method handleGoToRegister
-       */
-      handleGoToRegister: function() {
-        this.$.elLogin.hide();
-        this.$.elRegister.show();
-        this.$.pmLogin.style.display = "none";
-        this.$.pmRegistration.style.display = "block";
-      },
-      /**
-       * Method for showing login Element. <br/>
-       * @method handleGoToLogin
-       */
-      handleGoToLogin: function() {
-        this.$.elRegister.hide();
-        this.$.elLogin.show();
-        this.$.pmRegistration.style.display = "none";
-        this.$.pmLogin.style.display = "block";
-      }
-    });
-  })();
-</script>
+      });
+    })();
+  </script>
+</dom-module>
