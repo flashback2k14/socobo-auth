@@ -22,23 +22,23 @@
   "homepage": "http://flashback2k14.github.io/socobo-auth",
   "ignore": [],
   "dependencies": {
-    "iron-elements": "PolymerElements/iron-elements#1.0.2",
-    "paper-elements": "PolymerElements/paper-elements#1.0.2",
+    "iron-elements": "PolymerElements/iron-elements#1.0.4",
+    "paper-elements": "PolymerElements/paper-elements#1.0.6",
     "neon-elements": "PolymerElements/neon-elements#1.0.0",
-    "polymer": "Polymer/polymer#^1.0.0"
+    "polymer": "Polymer/polymer#1.2.0"
   },
   "devDependencies": {
-    "iron-component-page": "polymerelements/iron-component-page#^1.0.0",
+    "iron-component-page": "polymerelements/iron-component-page#1.0.9",
     "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0",
     "iron-test-helpers": "polymerelements/iron-test-helpers#^1.0.0",
     "test-fixture": "polymerelements/test-fixture#^1.0.0",
     "web-component-tester": "*"
   },
-  "_release": "a2300b1cdd",
+  "_release": "846562d5f1",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "a2300b1cdd969ef819bcf49576359ca48738a256"
+    "commit": "846562d5f188ac67d2fe587c401e1a46ae545f8f"
   },
   "_source": "git://github.com/flashback2k14/socobo-auth.git",
   "_target": "master",
