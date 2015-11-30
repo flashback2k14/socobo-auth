@@ -24,7 +24,7 @@ Custom property | Description | Default
         height: 100%;
         margin: 0;
         padding: 0;
-      @apply(--socobo-auth-container-theme);
+        @apply(--socobo-auth-container-theme);
       }
       .background-image {
         background-image: url('images/bg-img-2.png');
@@ -39,7 +39,7 @@ Custom property | Description | Default
         -o-filter: blur(5px);
         -ms-filter: blur(5px);
         filter: blur(5px);
-      @apply(--socobo-auth-bg-image-theme);
+        @apply(--socobo-auth-bg-image-theme);
       }
       .content {
         position: absolute;
@@ -49,17 +49,17 @@ Custom property | Description | Default
         right: 0;
         margin: auto;
         overflow: auto;
-        z-index: 15;
-        border-radius: 3px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
-      @apply(--socobo-auth-content-theme);
+        z-index: 0;
+        /*border-radius: 3px;*/
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+        @apply(--socobo-auth-content-theme);
       }
       .close-button {
         position: absolute;
         top: 20px;
         right: 20px;
         z-index: 20;
-      @apply(--socobo-auth-close-button-theme);
+        @apply(--socobo-auth-close-button-theme);
       }
       .default-show-login {
         display: block;
@@ -88,19 +88,19 @@ Custom property | Description | Default
       @media all and (min-width: 601px) and (max-width: 1280px) {
         .content {
           width: 48%;
-          height: 343px;
+          height: 363px;
         }
       }
       @media all and (min-width: 1281px) and (max-width: 1600px) {
         .content {
           width: 42%;
-          height: 343px;
+          height: 363px;
         }
       }
       @media all and (min-width: 1601px) and (max-width: 1920px) {
         .content {
           width: 34%;
-          height: 343px;
+          height: 363px;
         }
       }
     </style>
