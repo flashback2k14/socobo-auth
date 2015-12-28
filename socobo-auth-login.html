@@ -207,17 +207,17 @@ Custom property | Description | Default
           <paper-button
             class="social-btn btn-google-plus"
             raised
-            on-click="loginWithGooglePlus">Google+
+            on-tap="_loginWithGooglePlus">Google+
           </paper-button>
           <paper-button
             class="social-btn btn-twitter"
             raised
-            on-click="loginWithTwitter">Twitter
+            on-tap="_loginWithTwitter">Twitter
           </paper-button>
           <paper-button
             class="social-btn btn-facebook"
             raised
-            on-click="loginWithFacebook">Facebook
+            on-tap="_loginWithFacebook">Facebook
           </paper-button>
         </div>
         <div class="login-input-container">
@@ -243,13 +243,13 @@ Custom property | Description | Default
             <paper-button
               class="btn-login-email"
               raised
-              on-click="loginWithEmail">Login
+              on-tap="_loginWithEmail">Login
             </paper-button>
           </div>
         </div>
       </div>
       <div class="register-container">
-        <a class="nav-hyperlink" href="#" on-click="goToRegister">No Account, yet? Register here...</a>
+        <a class="nav-hyperlink" href="#" on-tap="_goToRegister">No Account, yet? Register here...</a>
       </div>
     </div>
   </template>
@@ -325,6 +325,7 @@ Custom property | Description | Default
         },
         /**
          * Method for handle finished Animation. <br/>
+         * @private
          * @method _onAnimationFinish
          */
         _onAnimationFinish: function() {
@@ -353,55 +354,61 @@ Custom property | Description | Default
         },
         /**
          * Method for login with Google+ Account. <br/>
+         * @private
          * @method loginWithGooglePlus
          */
-        loginWithGooglePlus: function() {
-          this.handleLogin('google');
+        _loginWithGooglePlus: function() {
+          this._handleLogin('google');
         },
         /**
          * Method for login with Twitter Account. <br/>
+         * @private
          * @method loginWithTwitter
          */
-        loginWithTwitter: function() {
-          this.handleLogin('twitter');
+        _loginWithTwitter: function() {
+          this._handleLogin('twitter');
         },
         /**
          * Method for login with Facebook Account. <br/>
+         * @private
          * @method loginWithFacebook
          */
-        loginWithFacebook: function() {
-          this.handleLogin('facebook');
+        _loginWithFacebook: function() {
+          this._handleLogin('facebook');
         },
         /**
          * Method for login with Emailaddress Account. <br/>
+         * @private
          * @method loginWithEmail
          */
-        loginWithEmail: function() {
-          this.handleLogin('email');
+        _loginWithEmail: function() {
+          this._handleLogin('email');
         },
         /**
          * Method for go to Register Element. <br/>
+         * @private
          * @method goToRegister
          */
-        goToRegister: function() {
+        _goToRegister: function() {
           this.fire('go-to-register');
         },
         /**
          * Method for clearing all input fields. <br/>
          * @param {Boolean} clearAll
+         * @private
          * @method clearInputFields
          */
-        clearInputFields: function(clearAll) {
+        _clearInputFields: function(clearAll) {
           if (clearAll) this.$.txtEmailaddress.value = "";
           this.$.txtPassword.value = "";
         },
         /**
          * Method for handle user login. <br/>
          * @param {String} provider Social Provider
+         * @private
          * @method handleLogin
          */
-        handleLogin: function(provider) {
-          var that = this;
+        _handleLogin: function(provider) {
           var fbBaseURL = this.firebasebaseurl;
           var userIsAdmin = false; //ToDo: Checkbox? Only for Development!?
 
@@ -416,25 +423,25 @@ Custom property | Description | Default
 
             SocoboAuth.getInstance().loginWithEmailaddress(fbBaseURL, userObj, false, userIsAdmin)
               .then(function(user) {
-                that.clearInputFields(true);
-                that.fire('login-successful', user);
-              })
+                this._clearInputFields(true);
+                this.fire('login-successful', user);
+              }.bind(this))
               .catch(function(err) {
-                that.clearInputFields(false);
-                that.fire('login-failed', err);
-              });
+                this._clearInputFields(false);
+                this.fire('login-failed', err);
+              }.bind(this));
 
           } else {
 
             SocoboAuth.getInstance().loginWithProvider(fbBaseURL, provider, false, userIsAdmin)
               .then(function(user) {
-                that.clearInputFields(true);
-                that.fire('login-successful', user);
-              })
+                this._clearInputFields(true);
+                this.fire('login-successful', user);
+              }.bind(this))
               .catch(function(err) {
-                that.clearInputFields(false);
-                that.fire('login-failed', err);
-              });
+                this._clearInputFields(false);
+                this.fire('login-failed', err);
+              }.bind(this));
           }
         }
       });

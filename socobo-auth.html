@@ -27,7 +27,7 @@ Custom property | Description | Default
         @apply(--socobo-auth-container-theme);
       }
       .background-image {
-        background-image: url('images/bg-img-2.png');
+        background-image: url('http://lorempixel.com/400/200/food/');
         background-size: cover;
         height: 100%;
         width: 100%;
@@ -106,7 +106,7 @@ Custom property | Description | Default
     </style>
 
     <div class="container">
-      <paper-fab class="close-button" mini icon="close" on-click="closeAuth"></paper-fab>
+      <paper-fab class="close-button" mini icon="close" on-tap="_closeAuth"></paper-fab>
 
       <div class="background-image"></div>
 
@@ -115,9 +115,9 @@ Custom property | Description | Default
           <socobo-auth-login
             id="elLogin"
             firebasebaseurl="[[userLogin.firebaseUrl]]"
-            on-login-successful="handleLoginSuccessful"
-            on-login-failed="handleLoginFailed"
-            on-go-to-register="handleGoToRegister">
+            on-login-successful="_handleLoginSuccessful"
+            on-login-failed="_handleLoginFailed"
+            on-go-to-register="_handleGoToRegister">
           </socobo-auth-login>
         </paper-material>
 
@@ -125,10 +125,10 @@ Custom property | Description | Default
           <socobo-auth-registration
             id="elRegister"
             firebasebaseurl="[[userLogin.firebaseUrl]]"
-            on-login-successful="handleLoginSuccessful"
-            on-login-failed="handleLoginFailed"
-            on-passwords-not-matching="handlePasswordsNotMatching"
-            on-go-to-login="handleGoToLogin">
+            on-login-successful="_handleLoginSuccessful"
+            on-login-failed="_handleLoginFailed"
+            on-passwords-not-matching="_handlePasswordsNotMatching"
+            on-go-to-login="_handleGoToLogin">
           </socobo-auth-registration>
         </paper-material>
       </div>
@@ -166,48 +166,49 @@ Custom property | Description | Default
            */
           userLogin: {
             type: Object,
-            value: {
-              firebaseUrl: 'https://<YOUR_FIREBASE_DATABASE>.firebaseio.com/',
-              userId: 'user_xy',
-              expires: 1442332186
-            }
+            value: {}
           }
         },
         /**
          * Method for firing custom event to close the Element. <br/>
+         * @private
          * @method closeAuth
          */
-        closeAuth: function() {
+        _closeAuth: function() {
           this.fire('handle-close-auth');
         },
         /**
          * Method for firing custom event to handle successful login. <br/>
          * @param {Object} e User Object
+         * @private
          * @method handleLoginSuccessful
          */
-        handleLoginSuccessful: function(e) {
+        _handleLoginSuccessful: function(e) {
           this.fire('handle-successful-login', {'user': e.detail});
         },
         /**
          * Method for firing custom event to handle failed login. <br/>
          * @param {Object} e Error Object
+         * @private
          * @method handleLoginFailed
          */
-        handleLoginFailed: function(e) {
+        _handleLoginFailed: function(e) {
           this.fire('handle-failed-login', {'error': e.detail});
         },
         /**
          * Method for firing custom event to handle mismatching passwords in Register Element. <br/>
+         * @private
          * @method handlePasswordsNotMatching
          */
-        handlePasswordsNotMatching: function() {
+        _handlePasswordsNotMatching: function() {
           this.fire('handle-passwords-not-mathing');
         },
         /**
          * Method for showing Register Element. <br/>
+         * @private
          * @method handleGoToRegister
          */
-        handleGoToRegister: function() {
+        _handleGoToRegister: function() {
           this.$.elLogin.hide();
           this.$.elRegister.show();
           this.$.pmLogin.style.display = "none";
@@ -215,9 +216,10 @@ Custom property | Description | Default
         },
         /**
          * Method for showing login Element. <br/>
+         * @private
          * @method handleGoToLogin
          */
-        handleGoToLogin: function() {
+        _handleGoToLogin: function() {
           this.$.elRegister.hide();
           this.$.elLogin.show();
           this.$.pmRegistration.style.display = "none";

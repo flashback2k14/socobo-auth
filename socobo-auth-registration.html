@@ -131,7 +131,7 @@ Custom property | Description | Default
         @apply(--socobo-auth-registration-login-container-theme);
       }
       .style-checkbox {
-        margin-left: 100px;
+        margin-left: 80px;
         margin-top: -2px;
       }
       .nav-hyperlink:link {
@@ -231,21 +231,21 @@ Custom property | Description | Default
             class="social-btn btn-google-plus"
             raised
             disabled
-            on-click="registerWithGooglePlus">Google+
+            on-tap="_registerWithGooglePlus">Google+
           </paper-button>
           <paper-button
             id="btnRegTwitter"
             class="social-btn btn-twitter"
             raised
             disabled
-            on-click="registerWithTwitter">Twitter
+            on-tap="_registerWithTwitter">Twitter
           </paper-button>
           <paper-button
             id="btnRegFacebook"
             class="social-btn btn-facebook"
             raised
             disabled
-            on-click="registerWithFacebook">Facebook
+            on-tap="_registerWithFacebook">Facebook
           </paper-button>
         </div>
         <div class="register-input-container">
@@ -283,14 +283,14 @@ Custom property | Description | Default
               class="btn-register-email"
               raised
               disabled
-              on-click="registerWithEmail">Register
+              on-tap="_registerWithEmail">Register
             </paper-button>
           </div>
         </div>
       </div>
       <div class="login-container">
         <a class="nav-hyperlink" href="#" on-click="goToLogin">Go to login...</a>
-        <paper-checkbox id="chbAcceptAGB" class="style-checkbox" on-tap="_toggleRegisterButtons"></paper-checkbox><span>Accept <a href="http://www.chefkoch.de/terms-of-use.php" target="_blank">Terms of Service</a></span>
+        <paper-checkbox id="chbAcceptAGB" class="style-checkbox" on-tap="_toggleRegisterButtons"></paper-checkbox><span>Accept <a class="nav-hyperlink" href="http://www.chefkoch.de/terms-of-use.php" target="_blank">Terms of Service</a></span>
       </div>
     </div>
   </template>
@@ -370,6 +370,7 @@ Custom property | Description | Default
         },
         /**
          * Method for handle finished Animation. <br/>
+         * @private
          * @method _onAnimationFinish
          */
         _onAnimationFinish: function() {
@@ -422,45 +423,51 @@ Custom property | Description | Default
         },
         /**
          * Method for register with Google+ Account. <br/>
-         * @method registerWithGooglePlus
+         * @private
+         * @method _registerWithGooglePlus
          */
-        registerWithGooglePlus: function() {
-          this.handleRegister('google');
+        _registerWithGooglePlus: function() {
+          this._handleRegister('google');
         },
         /**
          * Method for register with Twitter Account. <br/>
-         * @method registerWithTwitter
+         * @private
+         * @method _registerWithTwitter
          */
-        registerWithTwitter: function() {
-          this.handleRegister('twitter');
+        _registerWithTwitter: function() {
+          this._handleRegister('twitter');
         },
         /**
          * Method for register with Facebook Account. <br/>
-         * @method registerWithFacebook
+         * @private
+         * @method _registerWithFacebook
          */
-        registerWithFacebook: function() {
-          this.handleRegister('facebook');
+        _registerWithFacebook: function() {
+          this._handleRegister('facebook');
         },
         /**
          * Method for register with Emailaddress Account. <br/>
-         * @method registerWithEmail
+         * @private
+         * @method _registerWithEmail
          */
-        registerWithEmail: function() {
-          this.handleRegister('email');
+        _registerWithEmail: function() {
+          this._handleRegister('email');
         },
         /**
          * Method for go to Login Element. <br/>
-         * @method goToLogin
+         * @private
+         * @method _goToLogin
          */
-        goToLogin: function() {
+        _goToLogin: function() {
           this.fire('go-to-login');
         },
         /**
          * Method for clearing all input fields. <br/>
          * @param {Boolean} clearAll
-         * @method clearInputFields
+         * @private
+         * @method _clearInputFields
          */
-        clearInputFields: function(clearAll) {
+        _clearInputFields: function(clearAll) {
           if (clearAll) {
             this.$.txtEmailAddress.value = "";
           }
@@ -468,14 +475,22 @@ Custom property | Description | Default
           this.$.txtPasswordAgain.value = "";
         },
         /**
+         * Helper Function
+         * @private
+         * @method _checkDbName
+         */
+        _checkDbName: function() {
+          return this.firebasebaseurl.toLowerCase().indexOf("dev") !== -1;
+        },
+        /**
          * Method for handle user registration. <br/>
          * @param {String} provider Social Provider
-         * @method handleRegister
+         * @private
+         * @method _handleRegister
          */
-        handleRegister: function(provider) {
-          var that = this;
+        _handleRegister: function(provider) {
           var fbBaseURL = this.firebasebaseurl;
-          var userIsAdmin = true; //ToDo: Checkbox? Only for Development!?
+          var userIsAdmin = this._checkDbName();
           var hasTermsAccepted = this.$.chbAcceptAGB.checked;
 
           if (provider === 'email') {
@@ -499,29 +514,29 @@ Custom property | Description | Default
 
               SocoboAuth.getInstance().registerUserAndLogin(fbBaseURL, provider, userObj, userIsAdmin, hasTermsAccepted)
                 .then(function(user) {
-                  that.clearInputFields(true);
-                  that.fire('login-successful', user);
-                })
+                  this._clearInputFields(true);
+                  this.fire('login-successful', user);
+                }.bind(this))
                 .catch(function(err) {
-                  that.clearInputFields(false);
-                  that.fire('login-failed', err);
-                });
+                  this._clearInputFields(false);
+                  this.fire('login-failed', err);
+                }.bind(this));
 
             } else {
-              that.clearInputFields(false);
+              this._clearInputFields(false);
               this.fire('passwords-not-matching');
             }
           } else {
 
             SocoboAuth.getInstance().registerUserAndLogin(fbBaseURL, provider, null, userIsAdmin, hasTermsAccepted)
               .then(function(user) {
-                that.clearInputFields(true);
-                that.fire('login-successful', user);
-              })
+                this._clearInputFields(true);
+                this.fire('login-successful', user);
+              }.bind(this))
               .catch(function(err) {
-                that.clearInputFields(false);
-                that.fire('login-failed', err);
-              });
+                this._clearInputFields(false);
+                this.fire('login-failed', err);
+              }.bind(this));
           }
         }
       });
