@@ -13,12 +13,16 @@ Custom property | Description | Default
 `--socobo-auth-registration-social-button-container-theme` | Styling Social Button Container | `{}`
 `--socobo-auth-registration-social-btn-theme` | Styling for all Social Buttons | `{}`
 `--socobo-auth-registration-btn-google-plus-theme` | Styling Google+ Button | `{}`
+`--socobo-auth-registration-googleplus-button-bg-color-disabled` | Styling Disabled Google+ Button Background Color  | `{#ff7b66}`
 `--socobo-auth-registration-btn-twitter-theme` | Styling Twitter Button | `{}`
+`--socobo-auth-registration-twitter-button-bg-color-disabled` | Styling Disabled Twitter Button Background Color  | `{#85c9ff}`
 `--socobo-auth-registration-btn-facebook-theme` | Styling Facebook Button | `{}`
+`--socobo-auth-registration-facebook-button-bg-color-disabled` | Styling Disabled Facebook Button Background Color  | `{#89a0ff}`
 `--socobo-auth-registration-register-input-container-theme` | Styling Input Element Container | `{}`
 `--socobo-auth-registration-btn-register-email-container-theme` | Styling Register with Email Button Container | `{}`
 `--socobo-auth-registration-register-button-color` | Styling Register Button Foreground Color | `{#FFFFFF}`
 `--socobo-auth-registration-register-button-bg-color` | Styling Register Button Background Color | `{#388E3C}`
+`--socobo-auth-registration-register-button-bg-color-disabled` | Styling Disabled Register Button Background Color | `{#97fa99}`
 `--socobo-auth-registration-btn-register-email-theme` | Styling Register Button | `{}`
 `--socobo-auth-registration-login-container-theme` | Styling Hyperlink to Login Element container | `{}`
 `--socobo-auth-registration-hyperlink-theme` | Styling Hyperlink | `{}`
@@ -27,174 +31,191 @@ Custom property | Description | Default
 @demo demo/index.html
 -->
 <dom-module id="socobo-auth-registration">
-  <style>
-    :host {
-      display: none;
-    }
-    .container {
-      @apply(--layout-vertical);
-      width: 100%;
-      height: 340px;
-      background-color: var(--socobo-auth-registration-container-bg-color, #EEEEEE);
-      @apply(--socobo-auth-registration-container-theme);
-    }
-    .label-container {
-      @apply(--layout-vertical);
-      @apply(--socobo-auth-registration-label-container-theme);
-    }
-    .label-text {
-      margin: 0;
-      padding: 20px 0 10px 5px;
-      @apply(--socobo-auth-registration-label-text-theme);
-    }
-    .input-container {
-      @apply(--layout-horizontal);
-      @apply(--socobo-auth-registration-input-container-theme);
-    }
-    .social-button-container {
-      @apply(--layout-verical);
-      width: 40%;
-      margin-top: 45px;
-      margin-left: 9px;
-      @apply(--socobo-auth-registration-social-button-container-theme);
-    }
-    .social-btn {
-      margin-top: 10px;
-      margin-left: 15px;
-      margin-bottom: 5px;
-      width: 150px;
-      @apply(--socobo-auth-registration-social-btn-theme);
-    }
-    .btn-google-plus {
-      color: #ffffff;
-      background-color: #dd4b39;
-      @apply(--socobo-auth-registration-btn-google-plus-theme)
-    }
-    .btn-twitter {
-      color: #FFFFFF;
-      background-color: #55ACEE;
-      @apply(--socobo-auth-registration-btn-twitter-theme)
-    }
-    .btn-facebook {
-      color: #FFFFFF;
-      background-color: #3B5998;
-      @apply(--socobo-auth-registration-btn-facebook-theme)
-    }
-    .register-input-container {
-      @apply(--layout-verical);
-      width: 55%;
-      margin-top: 10px;
-      margin-right: 20px;
-      @apply(--socobo-auth-registration-register-input-container-theme);
-    }
-    .btn-register-email-container {
-      @apply(--layout-horizontal);
-      @apply(--layout-end-justified);
-      width: 100%;
-      @apply(--socobo-auth-registration-btn-register-email-container-theme);
-    }
-    .btn-register-email {
-      float: right;
-      margin-top: 20px;
-      margin-right: 0;
-      width: 150px;
-      color: var(--socobo-auth-registration-register-button-color, #FFFFFF);
-      background-color: var(--socobo-auth-registration-register-button-bg-color, #388E3C);
-      @apply(--socobo-auth-registration-btn-register-email-theme)
-    }
-    .login-container {
-      @apply(--layout-horizontal);
-      width: 50%;
-      margin-top: -23px;
-      margin-left: 10px;
-      padding-left: 14px;
-      padding-bottom: 10px;
-      white-space: nowrap;
-      @apply(--socobo-auth-registration-login-container-theme);
-    }
-    .nav-hyperlink:link {
-      text-decoration: none;
-      @apply(--socobo-auth-registration-hyperlink-theme);
-    }
-    .nav-hyperlink:hover {
-      text-decoration: underline;
-      @apply(--socobo-auth-registration-hyperlink-hover-theme);
-    }
-    @media all and (min-height: 400px) and (max-height: 650px) {
-      .container {
-        @apply(--layout-vertical);
-        height: 400px;
-      }
-      .input-container {
-        @apply(--layout-vertical);
-      }
-      .social-button-container {
-        @apply(--layout-horizontal);
-        width: 95%;
-        margin-top: 10px;
-        margin-left: 10px;
-      }
-      .social-btn {
-        width: 100px;
-        margin-left: 5px;
-        font-size: small;
-      }
-      .register-input-container {
-        width: 90%;
-        margin-top: 0;
-        margin-left: 15px;
-        margin-right: 15px;
-      }
-      .btn-register-email {
-        margin-top: 8px;
-      }
-      .login-container {
-        width: 60%;
-        margin-top: 13px;
-        margin-left: 10px;
-        padding-left: 0;
-      }
-    }
-    @media all and (min-height: 651px) and (max-height: 730px) {
-      .container {
-        @apply(--layout-vertical);
-        height: 400px;
-      }
-      .input-container {
-        @apply(--layout-vertical);
-      }
-      .social-button-container {
-        @apply(--layout-horizontal);
-        width: 90%;
-        margin-top: 15px;
-        margin-left: 20px;
-      }
-      .social-btn {
-        width: 100px;
-        margin-left: 10px;
-      }
-      .register-input-container {
-        width: 90%;
-        margin-top: 15px;
-        margin-left: 20px;
-        margin-right: 20px;
-      }
-      .btn-register-email {
-        margin-top: 10px;
-      }
-      .login-container {
-        width: 50%;
-        margin-top: -40px;
-        margin-left: 20px;
-        padding-left: 0;
-        padding-bottom: 5px;
-        white-space: pre-wrap;
-        word-wrap: break-word;
-      }
-    }
-  </style>
-
   <template>
+    <style>
+      :host {
+        display: none;
+      }
+      .container {
+        @apply(--layout-vertical);
+        width: 100%;
+        height: 360px;
+        background-color: var(--socobo-auth-registration-container-bg-color, #EEEEEE);
+        overflow: hidden;
+        @apply(--socobo-auth-registration-container-theme);
+      }
+      .label-container {
+        @apply(--layout-vertical);
+        @apply(--socobo-auth-registration-label-container-theme);
+      }
+      .label-text {
+        margin: 0;
+        padding: 20px 0 10px 5px;
+        @apply(--socobo-auth-registration-label-text-theme);
+      }
+      .input-container {
+        @apply(--layout-horizontal);
+        @apply(--socobo-auth-registration-input-container-theme);
+      }
+      .social-button-container {
+        @apply(--layout-verical);
+        width: 35%;
+        margin-top: 25px;
+        margin-left: 9px;
+        @apply(--socobo-auth-registration-social-button-container-theme);
+      }
+      .social-btn {
+        margin-top: 10px;
+        margin-left: 15px;
+        margin-bottom: 5px;
+        width: 150px;
+        @apply(--socobo-auth-registration-social-btn-theme);
+      }
+      .btn-google-plus {
+        color: #ffffff;
+        background-color: #dd4b39;
+        --paper-button-disabled: {
+          background-color: var(--socobo-auth-registration-googleplus-button-bg-color-disabled, #ff7b66);
+        };
+        @apply(--socobo-auth-registration-btn-google-plus-theme);
+      }
+      .btn-twitter {
+        color: #FFFFFF;
+        background-color: #55ACEE;
+        --paper-button-disabled: {
+          background-color: var(--socobo-auth-registration-twitter-button-bg-color-disabled, #85c9ff);
+        };
+        @apply(--socobo-auth-registration-btn-twitter-theme);
+      }
+      .btn-facebook {
+        color: #FFFFFF;
+        background-color: #3B5998;
+        --paper-button-disabled: {
+          background-color: var(--socobo-auth-registration-facebook-button-bg-color-disabled, #89a0ff);
+        };
+        @apply(--socobo-auth-registration-btn-facebook-theme);
+      }
+      .register-input-container {
+        @apply(--layout-verical);
+        width: 60%;
+        margin-top: 10px;
+        margin-right: 20px;
+        @apply(--socobo-auth-registration-register-input-container-theme);
+      }
+      .btn-register-email-container {
+        @apply(--layout-horizontal);
+        @apply(--layout-end-justified);
+        width: 100%;
+        @apply(--socobo-auth-registration-btn-register-email-container-theme);
+      }
+      .btn-register-email {
+        float: right;
+        margin-top: 20px;
+        margin-right: 0;
+        width: 150px;
+        color: var(--socobo-auth-registration-register-button-color, #FFFFFF);
+        background-color: var(--socobo-auth-registration-register-button-bg-color, #388E3C);
+        --paper-button-disabled: {
+          background-color: var(--socobo-auth-registration-register-button-bg-color-disabled, #97fa99);
+        };
+        @apply(--socobo-auth-registration-btn-register-email-theme);
+      }
+      .login-container {
+        @apply(--layout-horizontal);
+        width: 50%;
+        margin-top: -5px;
+        margin-left: 10px;
+        padding-left: 14px;
+        padding-bottom: 10px;
+        white-space: nowrap;
+        @apply(--socobo-auth-registration-login-container-theme);
+      }
+      .style-checkbox {
+        margin-left: 80px;
+        margin-top: -2px;
+      }
+      .nav-hyperlink:link {
+        text-decoration: none;
+        @apply(--socobo-auth-registration-hyperlink-theme);
+      }
+      .nav-hyperlink:hover {
+        text-decoration: underline;
+        @apply(--socobo-auth-registration-hyperlink-hover-theme);
+      }
+      @media all and (min-height: 400px) and (max-height: 650px) {
+        .container {
+          @apply(--layout-vertical);
+          height: 400px;
+        }
+        .input-container {
+          @apply(--layout-vertical);
+        }
+        .social-button-container {
+          @apply(--layout-horizontal);
+          width: 95%;
+          margin-top: 10px;
+          margin-left: 10px;
+        }
+        .social-btn {
+          width: 100px;
+          margin-left: 5px;
+          font-size: small;
+        }
+        .register-input-container {
+          width: 90%;
+          margin-top: 0;
+          margin-left: 15px;
+          margin-right: 15px;
+        }
+        .btn-register-email {
+          margin-top: 8px;
+        }
+        .login-container {
+          width: 60%;
+          margin-top: 13px;
+          margin-left: 10px;
+          padding-left: 0;
+        }
+      }
+      @media all and (min-height: 651px) and (max-height: 730px) {
+        .container {
+          @apply(--layout-vertical);
+          height: 400px;
+        }
+        .input-container {
+          @apply(--layout-vertical);
+        }
+        .social-button-container {
+          @apply(--layout-horizontal);
+          width: 90%;
+          margin-top: 15px;
+          margin-left: 20px;
+        }
+        .social-btn {
+          width: 100px;
+          margin-left: 10px;
+        }
+        .register-input-container {
+          width: 90%;
+          margin-top: 15px;
+          margin-left: 20px;
+          margin-right: 20px;
+        }
+        .btn-register-email {
+          margin-top: 10px;
+        }
+        .login-container {
+          width: 50%;
+          margin-top: -40px;
+          margin-left: 20px;
+          padding-left: 0;
+          padding-bottom: 5px;
+          white-space: pre-wrap;
+          word-wrap: break-word;
+        }
+      }
+    </style>
+
     <div class="container">
       <div class="label-container">
         <paper-material elevation="3" animated="true">
@@ -206,19 +227,25 @@ Custom property | Description | Default
       <div class="input-container">
         <div class="social-button-container">
           <paper-button
+            id="btnRegGooglePlus"
             class="social-btn btn-google-plus"
             raised
-            on-click="registerWithGooglePlus">Google+
+            disabled
+            on-tap="_registerWithGooglePlus">Google+
           </paper-button>
           <paper-button
+            id="btnRegTwitter"
             class="social-btn btn-twitter"
             raised
-            on-click="registerWithTwitter">Twitter
+            disabled
+            on-tap="_registerWithTwitter">Twitter
           </paper-button>
           <paper-button
+            id="btnRegFacebook"
             class="social-btn btn-facebook"
             raised
-            on-click="registerWithFacebook">Facebook
+            disabled
+            on-tap="_registerWithFacebook">Facebook
           </paper-button>
         </div>
         <div class="register-input-container">
@@ -252,224 +279,267 @@ Custom property | Description | Default
           </paper-input>
           <div class="btn-register-email-container">
             <paper-button
+              id="btnRegEmail"
               class="btn-register-email"
               raised
-              on-click="registerWithEmail">Register
+              disabled
+              on-tap="_registerWithEmail">Register
             </paper-button>
           </div>
         </div>
       </div>
       <div class="login-container">
-        <a class="nav-hyperlink" href="#" on-click="goToLogin">You have an Account? Go to login...</a>
+        <a class="nav-hyperlink" href="#" on-tap="_goToLogin">Go to login...</a>
+        <paper-checkbox id="chbAcceptAGB" class="style-checkbox" on-tap="_toggleRegisterButtons"></paper-checkbox><span>Accept <a class="nav-hyperlink" href="http://www.chefkoch.de/terms-of-use.php" target="_blank">Terms of Service</a></span>
       </div>
     </div>
   </template>
-</dom-module>
 
-<script>
-  (function() {
-    Polymer({
-      is: 'socobo-auth-registration',
-      /**
-       * This Event is fired if the hyperlink is pressed to navigate to the Login Element. <br/>
-       * @event go-to-login
-       */
-      /**
-       * This Event is fired if the buttons are pressed and the registration was successful. <br/>
-       * `Detail`: user {Object} <br/>
-       * @event login-successful
-       */
-      /**
-       * This Event is fired if the buttons are pressed and the registration was failed. <br/>
-       * `Detail`: err {Object} <br/>
-       * @event login-failed
-       */
-      /**
-       * This Event is fired if the entered passwords not matching. <br/>
-       * @event passwords-not-matching
-       */
-      /**
-       * Define Neon Animation Behavior.
-       */
-      behaviors: [
-        Polymer.NeonAnimationRunnerBehavior
-      ],
-      /**
-       * Element Properties.
-       */
-      properties: {
+  <script>
+    (function() {
+      Polymer({
+        is: 'socobo-auth-registration',
         /**
-         * Handle Element showing state.
+         * This Event is fired if the hyperlink is pressed to navigate to the Login Element. <br/>
+         * @event go-to-login
          */
-        opened: {
-          type: Boolean,
-          value: false
-        },
         /**
-         * Base URL to your Firebase Database
+         * This Event is fired if the buttons are pressed and the registration was successful. <br/>
+         * `Detail`: user {Object} <br/>
+         * @event login-successful
          */
-        firebasebaseurl: {
-          type: String
-        },
         /**
-         * Configuration for the Animation. <br/>
-         * `Entry`: scale-up-animation <br/>
-         * `Exit`: fade-out-animation
+         * This Event is fired if the buttons are pressed and the registration was failed. <br/>
+         * `Detail`: err {Object} <br/>
+         * @event login-failed
          */
-        animationConfig: {
-          type: Object,
-          value: function() {
-            return {
-              'entry': {
-                name: 'scale-up-animation',
-                node: this,
-                timing: {duration: 1000}
-              },
-              'exit': {
-                name: 'fade-out-animation',
-                node: this
+        /**
+         * This Event is fired if the entered passwords not matching. <br/>
+         * @event passwords-not-matching
+         */
+        /**
+         * Define Neon Animation Behavior.
+         */
+        behaviors: [
+          Polymer.NeonAnimationRunnerBehavior
+        ],
+        /**
+         * Element Properties.
+         */
+        properties: {
+          /**
+           * Handle Element showing state.
+           */
+          opened: {
+            type: Boolean,
+            value: false
+          },
+          /**
+           * Base URL to your Firebase Database
+           */
+          firebasebaseurl: {
+            type: String
+          },
+          /**
+           * Configuration for the Animation. <br/>
+           * `Entry`: scale-up-animation <br/>
+           * `Exit`: fade-out-animation
+           */
+          animationConfig: {
+            type: Object,
+            value: function() {
+              return {
+                'entry': {
+                  name: 'scale-up-animation',
+                  node: this,
+                  timing: {duration: 1000}
+                },
+                'exit': {
+                  name: 'fade-out-animation',
+                  node: this
+                }
               }
             }
           }
-        }
-      },
-      /**
-       * Define Listener for finished Animation.
-       */
-      listeners: {
-        'neon-animation-finish': '_onAnimationFinish'
-      },
-      /**
-       * Method for handle finished Animation. <br/>
-       * @method _onAnimationFinish
-       */
-      _onAnimationFinish: function() {
-        if (!this.opened) {
-          this.style.display = 'none';
-        }
-      },
-      /**
-       * Method for showing the Element. <br/>
-       * @method show
-       */
-      show: function() {
-        this.opened = true;
-        this.style.display = 'block';
-        this.cancelAnimation();
-        this.playAnimation('entry');
-      },
-      /**
-       * Method for hiding the Element. <br/>
-       * @method hide
-       */
-      hide: function() {
-        this.opened = false;
-        this.cancelAnimation();
-        this.playAnimation('exit');
-      },
-      /**
-       * Method for register with Google+ Account. <br/>
-       * @method registerWithGooglePlus
-       */
-      registerWithGooglePlus: function() {
-        this.handleRegister('google');
-      },
-      /**
-       * Method for register with Twitter Account. <br/>
-       * @method registerWithTwitter
-       */
-      registerWithTwitter: function() {
-        this.handleRegister('twitter');
-      },
-      /**
-       * Method for register with Facebook Account. <br/>
-       * @method registerWithFacebook
-       */
-      registerWithFacebook: function() {
-        this.handleRegister('facebook');
-      },
-      /**
-       * Method for register with Emailaddress Account. <br/>
-       * @method registerWithEmail
-       */
-      registerWithEmail: function() {
-        this.handleRegister('email');
-      },
-      /**
-       * Method for go to Login Element. <br/>
-       * @method goToLogin
-       */
-      goToLogin: function() {
-        this.fire('go-to-login');
-      },
-      /**
-       * Method for clearing all input fields. <br/>
-       * @param {Boolean} clearAll
-       * @method clearInputFields
-       */
-      clearInputFields: function(clearAll) {
-        if (clearAll) {
-          this.$.txtEmailAddress.value = "";
-        }
-        this.$.txtPassword.value = "";
-        this.$.txtPasswordAgain.value = "";
-      },
-      /**
-       * Method for handle user registration. <br/>
-       * @param {String} provider Social Provider
-       * @method handleRegister
-       */
-      handleRegister: function(provider) {
-        var that = this;
-        var fbBaseURL = this.firebasebaseurl;
-        var userIsAdmin = true; //ToDo: Checkbox? Only for Development!?
-
-        if (provider === 'email') {
-          var isPasswordMatching = false;
-
-          var emailAddress = this.$.txtEmailAddress.value;
-          var password = this.$.txtPassword.value;
-          var passwordAgain = this.$.txtPasswordAgain.value;
-
-          if (password.length >= 8 && passwordAgain.length >= 8) {
-            if (password.match(passwordAgain)) {
-              isPasswordMatching = true;
-            }
+        },
+        /**
+         * Define Listener for finished Animation.
+         */
+        listeners: {
+          'neon-animation-finish': '_onAnimationFinish'
+        },
+        /**
+         * Method for handle finished Animation. <br/>
+         * @private
+         * @method _onAnimationFinish
+         */
+        _onAnimationFinish: function() {
+          if (!this.opened) {
+            this.style.display = 'none';
           }
-
-          if (isPasswordMatching) {
-            var userObj = {
-              'email': emailAddress,
-              'password': password
-            };
-
-            SocoboAuth.getInstance().registerUserAndLogin(fbBaseURL, provider, userObj, userIsAdmin)
-              .then(function(user) {
-                that.clearInputFields(true);
-                that.fire('login-successful', user);
-              })
-              .catch(function(err) {
-                that.clearInputFields(false);
-                that.fire('login-failed', err);
-              });
-
+        },
+        /**
+         * Method for showing the Element. <br/>
+         * @method show
+         */
+        show: function() {
+          this.opened = true;
+          this.style.display = 'block';
+          this.cancelAnimation();
+          this.playAnimation('entry');
+        },
+        /**
+         * Method for hiding the Element. <br/>
+         * @method hide
+         */
+        hide: function() {
+          this.opened = false;
+          this.cancelAnimation();
+          this.playAnimation('exit');
+        },
+        /**
+         * toggle all buttons
+         * @private
+         * @methode _toggleRegisterButtons
+         */
+        _toggleRegisterButtons: function() {
+          this._toggleButton(this.$.btnRegGooglePlus);
+          this._toggleButton(this.$.btnRegTwitter);
+          this._toggleButton(this.$.btnRegFacebook);
+          this._toggleButton(this.$.btnRegEmail);
+        },
+        /**
+         * toggle button to enable / disable Button
+         * @param {HTMLElement} el
+         * @private
+         * @method _toggleButton
+         */
+        _toggleButton: function(el) {
+          if (el.get("disabled")) {
+            el.set("disabled", false);
           } else {
-            that.clearInputFields(false);
-            this.fire('passwords-not-matching');
+            el.set("disabled", true);
           }
-        } else {
+        },
+        /**
+         * Method for register with Google+ Account. <br/>
+         * @private
+         * @method _registerWithGooglePlus
+         */
+        _registerWithGooglePlus: function() {
+          this._handleRegister('google');
+        },
+        /**
+         * Method for register with Twitter Account. <br/>
+         * @private
+         * @method _registerWithTwitter
+         */
+        _registerWithTwitter: function() {
+          this._handleRegister('twitter');
+        },
+        /**
+         * Method for register with Facebook Account. <br/>
+         * @private
+         * @method _registerWithFacebook
+         */
+        _registerWithFacebook: function() {
+          this._handleRegister('facebook');
+        },
+        /**
+         * Method for register with Emailaddress Account. <br/>
+         * @private
+         * @method _registerWithEmail
+         */
+        _registerWithEmail: function() {
+          this._handleRegister('email');
+        },
+        /**
+         * Method for go to Login Element. <br/>
+         * @private
+         * @method _goToLogin
+         */
+        _goToLogin: function() {
+          this.fire('go-to-login');
+        },
+        /**
+         * Method for clearing all input fields. <br/>
+         * @param {Boolean} clearAll
+         * @private
+         * @method _clearInputFields
+         */
+        _clearInputFields: function(clearAll) {
+          if (clearAll) {
+            this.$.txtEmailAddress.value = "";
+          }
+          this.$.txtPassword.value = "";
+          this.$.txtPasswordAgain.value = "";
+        },
+        /**
+         * Helper Function
+         * @private
+         * @method _checkDbName
+         */
+        _checkDbName: function() {
+          return this.firebasebaseurl.toLowerCase().indexOf("dev") !== -1;
+        },
+        /**
+         * Method for handle user registration. <br/>
+         * @param {String} provider Social Provider
+         * @private
+         * @method _handleRegister
+         */
+        _handleRegister: function(provider) {
+          var fbBaseURL = this.firebasebaseurl;
+          var userIsAdmin = this._checkDbName();
+          var hasTermsAccepted = this.$.chbAcceptAGB.checked;
 
-          SocoboAuth.getInstance().registerUserAndLogin(fbBaseURL, provider, null, userIsAdmin)
-            .then(function(user) {
-              that.clearInputFields(true);
-              that.fire('login-successful', user);
-            })
-            .catch(function(err) {
-              that.clearInputFields(false);
-              that.fire('login-failed', err);
-            });
+          if (provider === 'email') {
+            var isPasswordMatching = false;
+
+            var emailAddress = this.$.txtEmailAddress.value;
+            var password = this.$.txtPassword.value;
+            var passwordAgain = this.$.txtPasswordAgain.value;
+
+            if (password.length >= 8 && passwordAgain.length >= 8) {
+              if (password.match(passwordAgain)) {
+                isPasswordMatching = true;
+              }
+            }
+
+            if (isPasswordMatching) {
+              var userObj = {
+                'email': emailAddress,
+                'password': password
+              };
+
+              SocoboAuth.getInstance().registerUserAndLogin(fbBaseURL, provider, userObj, userIsAdmin, hasTermsAccepted)
+                .then(function(user) {
+                  this._clearInputFields(true);
+                  this.fire('login-successful', user);
+                }.bind(this))
+                .catch(function(err) {
+                  this._clearInputFields(false);
+                  this.fire('login-failed', err);
+                }.bind(this));
+
+            } else {
+              this._clearInputFields(false);
+              this.fire('passwords-not-matching');
+            }
+          } else {
+
+            SocoboAuth.getInstance().registerUserAndLogin(fbBaseURL, provider, null, userIsAdmin, hasTermsAccepted)
+              .then(function(user) {
+                this._clearInputFields(true);
+                this.fire('login-successful', user);
+              }.bind(this))
+              .catch(function(err) {
+                this._clearInputFields(false);
+                this.fire('login-failed', err);
+              }.bind(this));
+          }
         }
-      }
-    });
-  })();
-</script>
+      });
+    })();
+  </script>
+</dom-module>
